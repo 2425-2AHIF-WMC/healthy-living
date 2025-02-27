@@ -1,0 +1,5 @@
+Ideas: 
+DarkMode, LightMode
+Users, personalisierte Antworten
+Search Bar 
+Produkte slideshow
