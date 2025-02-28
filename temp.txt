@@ -3,4 +3,8 @@ DarkMode, LightMode
 Users, personalisierte Antworten
 Search Bar 
 Produkte slideshow
+<<<<<<< HEAD
 franziska
+=======
+Sarah Joshika Nelson
+>>>>>>> bb203d32415c5f0eed50ddc7fdcdb6daf99d600c
