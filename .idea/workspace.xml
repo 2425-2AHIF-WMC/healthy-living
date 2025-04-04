@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="193b3449-347d-4b5f-ad17-c023cc9faac6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/temp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,6 +33,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -54,7 +63,10 @@
       <updated>1740554611202</updated>
       <workItem from="1740554612621" duration="37000" />
       <workItem from="1740554711596" duration="7000" />
-      <workItem from="1740743418669" duration="393000" />
+      <workItem from="1740743418669" duration="1430000" />
+      <workItem from="1741006166359" duration="31000" />
+      <workItem from="1743681751148" duration="14000" />
+      <workItem from="1743760627393" duration="43000" />
     </task>
     <servers />
   </component>
