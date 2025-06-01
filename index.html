@@ -1,10 +1,181 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Healthy Living</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with Header Login</title>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href = "style.css">
 </head>
 <body>
-<p>HALLOOOOOOO</p>
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="#" class="navbar-brand">My Website</a>
+    <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="make.html">Services</a>
+        <a href="#">Contact</a>
+
+        <!-- Auth button (shown when user is not logged in) -->
+        <div class="auth-buttons" id="authButtons">
+            <button id="myAccountBtn">My Account</button>
+        </div>
+
+        <!-- User info (shown when user is logged in) -->
+        <div class="user-info" id="userInfo">
+            <div class="user-avatar" id="userAvatar"></div>
+            <span id="userNameDisplay"></span>
+            <button id="logoutButton">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <h1>Live Your Best <span class="highlight">Healthy Life</span></h1>
+    <p>Discover simple ways to improve your wellbeing through nutrition, fitness, and mindfulness. Schreib iwas ajfhaksfhsaföikjhfsaiofjsadiofjlsadf</p>
+    <div class="hero-buttons">
+        <button class="btn-primary">ka für was</button>
+        <button class="btn-secondary">bracuhst?</button>
+    </div>
+    <div id="welcomeMessage"></div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <h2>How We Help You Stay Healthy</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🥗</div>
+            <h3>Nutrition Plans</h3>
+            <p>Once upon a time, a little bunny named Pip found a golden carrot buried in the forest. Every animal wanted a bite, but Pip decided to plant it instead. Days passed, and soon, a magical carrot tree sprouted, feeding the whole forest forever. Pip never went hungry again.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏃</div>
+            <h3>Fitness Routines</h3>
+            <p>A whale named Finn found a glowing pearl. Instead of keeping it, he placed it in the ocean’s heart. The sea shimmered forever..</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧘</div>
+            <h3>Mindfulness</h3>
+            <p>A curious monkey named Jojo found a mysterious banana glowing under the moonlight. He took a bite, and suddenly, he could understand every animal in the jungle. From that day on, Jojo became the jungle’s wisest guide.jkashfhalkfjhasf hihihhihhiii</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section">
+    <h2>What Our Community Says</h2>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">KA</div>
+                <div class="testimonial-info">
+                    <h4>COOL</h4>
+                    <p>welche lanmd</p>
+                </div>
+            </div>
+            <p class="testimonial-text">"Twichtiger pichlosovs zitat oda so "</p>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">AS</div>
+                <div class="testimonial-info">
+                    <h4>Albert Einsteins</h4>
+                    <p>land oda so</p>
+                </div>
+            </div>
+            <p class="testimonial-text">"Ika wida iwas"</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-brand">
+                <span class="brand-icon">🌿</span>
+                <span class="brand-name">My Website</span>
+            </div>
+            <p>iwas nur wenn wir bruachen .</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Quiz</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Workout Plans</a></li>
+                <li><a href="#">Health Tips</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>📧 hello@petruskatharina.com</p>
+            <p>📞 065068514852563</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Our Website. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Login/Signup Modal -->
+<div class="modal" id="authModal">
+    <div class="modal-content" id="modalContent">
+        <span class="close-button" id="closeModal">&times;</span>
+
+        <div class="form-container sign-up-container">
+            <form id="signupForm">
+                <h1>Create Account</h1>
+                <span>Use your email for registration</span>
+                <input type="text" id="signupName" placeholder="Name" required />
+                <input type="email" id="signupEmail" placeholder="Email" required />
+                <input type="password" id="signupPassword" placeholder="Password" required />
+                <div class="error-message" id="signupError"></div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h1>Log In</h1>
+                <span>Use your account</span>
+                <input type="email" id="loginEmail" placeholder="Email" required />
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <div class="error-message" id="loginError"></div>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Log In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, new Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
