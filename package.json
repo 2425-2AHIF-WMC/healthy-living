@@ -1,0 +1,20 @@
+{
+  "name": "healthy-living",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000h\u0000e\u0000a\u0000l\u0000t\u0000h\u0000y\u0000-\u0000l\u0000i\u0000v\u0000i\u0000n\u0000g\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2425-2AHIF-WMC/healthy-living.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2425-2AHIF-WMC/healthy-living/issues"
+  },
+  "homepage": "https://github.com/2425-2AHIF-WMC/healthy-living#readme"
+}
