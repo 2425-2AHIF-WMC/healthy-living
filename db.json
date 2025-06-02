@@ -1,16 +1,22 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Test User",
       "email": "test@example.com",
       "password": "password123"
     },
     {
-      "id": 1748610642945,
+      "id": "1748610642945",
       "name": "Sarah Joshika Nelson",
       "email": "nelsonsarahjoshika@gmail.com",
       "password": "Sarahsamrat1"
+    },
+    {
+      "id": 1748800989119,
+      "name": "Petra",
+      "email": "simunovicpetra06@gmail.com",
+      "password": "1234"
     }
   ]
 }

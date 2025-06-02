@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website with Header Login</title>
     <script src="index.js" type="module"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href = "style.css">
 </head>
 <body>
 <!-- Navbar -->
 <nav class="navbar">
-    <a href="#" class="navbar-brand">My Website</a>
+    <a href="#" class="navbar-brand">Healthy Living</a>
     <div class="navbar-links">
         <a href="index.html">Home</a>
         <a href="#">About</a>
@@ -36,12 +36,25 @@
 <!-- Hero Section -->
 <section class="hero-section">
     <h1>Live Your Best <span class="highlight">Healthy Life</span></h1>
-    <p>Discover simple ways to improve your wellbeing through nutrition, fitness, and mindfulness. Schreib iwas ajfhaksfhsaföikjhfsaiofjsadiofjlsadf</p>
+    <p>Discover simple ways to improve your wellbeing through nutrition, fitness, and mindfulness.</p>
     <div class="hero-buttons">
-        <button class="btn-primary">ka für was</button>
-        <button class="btn-secondary">bracuhst?</button>
+        <button class="btn-primary">...</button>
+        <button class="btn-secondary">...</button>
     </div>
     <div id="welcomeMessage"></div>
+
+    <br><br>
+    <div class="container">
+        <div class="quote-container">
+            <p class="quote" id="motivationQuote">Load saying...</p>
+        </div>
+
+        <button class="new-quote-btn" onclick="neuerSpruch()">
+            Quote 🎲
+        </button>
+
+        <div class="date" id="currentDate"></div>
+    </div>
 </section>
 
 <!-- Features Section -->
