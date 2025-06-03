@@ -56,7 +56,7 @@ function aktuellesDatumAnzeigen() {
         month: 'long',
         day: 'numeric'
     };
-    const formatiertesDatum = heute.toLocaleDateString('de-DE', optionen);
+    const formatiertesDatum = heute.toLocaleDateString('en-UK', optionen);
     document.getElementById('currentDate').textContent = formatiertesDatum;
 }
 

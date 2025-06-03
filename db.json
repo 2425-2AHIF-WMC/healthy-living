@@ -13,10 +13,16 @@
       "password": "Sarahsamrat1"
     },
     {
-      "id": 1748800989119,
+      "id": "1748800989119",
       "name": "Petra",
       "email": "simunovicpetra06@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": 1748874354239,
+      "name": "Annika",
+      "email": "a.neuhauser@gmail.com",
+      "password": "1234567"
     }
   ]
 }
