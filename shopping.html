@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-      <html lang="en">
-      <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Wellness Hub - Healthy Living Products</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Living</title>
+  <link rel="stylesheet" href="shopping.css">
   <script src="index.js" type="module"></script>
-  <link rel="stylesheet" href = "shopping.css">
+  <script src="shopping.js" type = "module"></script>
 </head>
 <body>
+
 <nav class="navbar">
-  <a href="#" class="navbar-brand">My Website</a>
+  <a href="#" class="navbar-brand">Healthy Living</a>
   <div class="navbar-links">
     <a href="index.html">Home</a>
     <a href="shopping.html">Shop</a>
@@ -35,54 +33,187 @@
   </div>
 </nav>
 
-<div class="min-h-screen">
-  <!-- Main Content -->
-  <main class="main">
-    <button id="cart-button" class="cart-button" style="float: right;">
-      <div class="cart-icon">
-        <div class="cart-icon-inner"></div>
+<!--<div class="cart">🛒 Warenkorb (0)</div> -->
+<!-- FITNESS SEKTION -->
+<div class="category-section fitness">
+  <div class="category-header">
+    <div class="category-icon">💪</div>
+    <div>
+      <div class="category-title">Fitness & Sport</div>
+      <div class="category-description">Everything for your training and physical fitness</div>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image"> <img src = "./pictures_Shopping/yogaMatte.jpg" alt = "Product Image"></div>
+      <div class="store-badge">Intersport.com</div>
+      <div class="product-title">Premium Yoga Mat</div>
+      <div class="product-brand">Energetics</div>
+      <div class="product-category">Yoga & Meditation</div>
+      <div class="product-footer">
+        <div class="price">€49.99</div>
+        <button class="add-to-cart" onclick="addToCart('Premium Yoga Mat', 49.99)">Add to Cart</button>
       </div>
-      Cart (<span id="cart-count">0</span>)
-    </button>
-    <div class="header-text">
-      <h2>Discover Wellness Products</h2>
-      <p>Curated from top health and wellness stores for your healthy lifestyle</p>
     </div>
-    <!-- Product Grid -->
-    <div class="product-grid" id="product-grid">
-      <!-- Products will be added here dynamically -->
-    </div>
-  </main>
 
-  <!-- Cart Modal -->
-  <div id="cart-modal" class="modal hidden">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Your Wellness Cart</h3>
-        <button id="close-cart" class="close-btn">&times;</button>
+    <div class="product-card">
+      <div class="product-image"> <img src = "./pictures_Shopping/bandSet.jpg" alt = "Product Image"></div>
+      <div class="store-badge">Intersport.com</div>
+      <div class="product-title">Resistance Band Set</div>
+      <div class="product-brand">Energetics</div>
+      <div class="product-category">Strength training & Stretching</div>
+      <div class="product-footer">
+        <div class="price">€9.99</div>
+        <button class="add-to-cart" onclick="addToCart('Resistance Band Set', 24.99)">Add to Cart</button>
       </div>
-      <div class="modal-body">
-        <div id="cart-items" class="cart-items">
-          <div id="empty-cart-message" class="empty-message">
-            Your cart is empty. Add some wellness products!
-          </div>
-        </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image"> <img src = "./pictures_Shopping/dumbbells.jpg" alt = "Product Image"></div>
+      <div class="store-badge">ActiveLife.com</div>
+      <div class="product-title">Adjustable Dumbbells</div>
+      <div class="product-brand">PowerFit</div>
+      <div class="product-category">Strength training & Muscle building</div>
+      <div class="product-footer">
+        <div class="price">$89.99</div>
+        <button class="add-to-cart" onclick="addToCart('Adjustable Dumbbells', 89.99)">Add to Cart</button>
       </div>
-      <div class="modal-footer">
-        <div class="total-row">
-          <span class="total-label">Total:</span>
-          <span class="total-amount">$<span id="cart-total">0.00</span></span>
-        </div>
-        
-        <div class="continue-shopping">
-          <button id="continue-shopping">
-            Continue Shopping
-          </button>
-        </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">SportZone.com</div>
+      <div class="product-title">Foam Roller Pro</div>
+      <div class="product-brand">RecoveryMax</div>
+      <div class="product-category">Regeneration & Massage</div>
+      <div class="product-footer">
+        <div class="price">$34.99</div>
+        <button class="add-to-cart" onclick="addToCart('Foam Roller Pro', 34.99)">Add to Cart</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ERNÄHRUNG SEKTION -->
+<div class="category-section nutrition">
+  <div class="category-header">
+    <div class="category-icon">🥗</div>
+    <div>
+      <div class="category-title">Nutrition & Supplements</div>
+      <div class="category-description">High-quality nutritional supplements for optimal health</div>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">OrganicWellness.com</div>
+      <div class="product-title">Organic Protein Powder</div>
+      <div class="product-brand">PureNutrition</div>
+      <div class="product-category">Nutrition & Recovery</div>
+      <div class="product-footer">
+        <div class="price">$39.95</div>
+        <button class="add-to-cart" onclick="addToCart('Organic Protein Powder', 39.95)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">HealthyLife.com</div>
+      <div class="product-title">Vitamin D3 + K2</div>
+      <div class="product-brand">VitaBoost</div>
+      <div class="product-category">Vitamins & Minerals</div>
+      <div class="product-footer">
+        <div class="price">$29.99</div>
+        <button class="add-to-cart" onclick="addToCart('Vitamin D3 + K2', 29.99)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">NutriStore.com</div>
+      <div class="product-title">Omega-3 Fish Oil</div>
+      <div class="product-brand">PureMarine</div>
+      <div class="product-category">Heart Health & Brain</div>
+      <div class="product-footer">
+        <div class="price">$24.95</div>
+        <button class="add-to-cart" onclick="addToCart('Omega-3 Fish Oil', 24.95)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">SuperFoods.com</div>
+      <div class="product-title">Green Superfood Blend</div>
+      <div class="product-brand">NatureBoost</div>
+      <div class="product-category">Superfood & Detox</div>
+      <div class="product-footer">
+        <div class="price">$44.99</div>
+        <button class="add-to-cart" onclick="addToCart('Green Superfood Blend', 44.99)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEDITATION SEKTION -->
+<div class="category-section meditation">
+  <div class="category-header">
+    <div class="category-icon">🧘‍♀️</div>
+    <div>
+      <div class="category-title">Meditation & Relaxation</div>
+      <div class="category-description">Products for inner peace and mental well-being</div>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">ZenLiving.com</div>
+      <div class="product-title">Meditation Cushion Set</div>
+      <div class="product-brand">MindfulSpace</div>
+      <div class="product-category">Meditation & Relaxation</div>
+      <div class="product-footer">
+        <div class="price">$59.99</div>
+        <button class="add-to-cart" onclick="addToCart('Meditation Cushion Set', 59.99)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">MindfulShop.com</div>
+      <div class="product-title">Essential Oil Diffuser</div>
+      <div class="product-brand">AromaZen</div>
+      <div class="product-category">Aromatherapy & Relaxation</div>
+      <div class="product-footer">
+        <div class="price">$44.99</div>
+        <button class="add-to-cart" onclick="addToCart('Essential Oil Diffuser', 44.99)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">CalmSpace.com</div>
+      <div class="product-title">Singing Bowl Set</div>
+      <div class="product-brand">TibetanSound</div>
+      <div class="product-category">Sound therapy & Meditation</div>
+      <div class="product-footer">
+        <div class="price">$79.99</div>
+        <button class="add-to-cart" onclick="addToCart('Singing Bowl Set', 79.99)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-image">Product Image</div>
+      <div class="store-badge">RelaxLife.com</div>
+      <div class="product-title">Weighted Blanket</div>
+      <div class="product-brand">CalmSleep</div>
+      <div class="product-category">Sleep & Relaxation</div>
+      <div class="product-footer">
+        <div class="price">$89.99</div>
+        <button class="add-to-cart" onclick="addToCart('Weighted Blanket', 89.99)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="authModal">
   <div class="modal-content" id="modalContent">
     <span class="close-button" id="closeModal">&times;</span>
@@ -126,272 +257,5 @@
     </div>
   </div>
 </div>
-<script>
-  // Sample product data with image URLs (currently placeholders)
-  const products = [
-    {
-      id: 1,
-      name: "Premium Yoga Mat",
-      brand: "ZenFlex",
-      store: "YogaEssentials.com",
-      purpose: "Yoga & Meditation",
-      price: 49.99,
-      imageUrl: "" // Add your image URL here
-    },
-    {
-      id: 2,
-      name: "Organic Protein Powder",
-      brand: "PureNutrition",
-      store: "OrganicWellness.com",
-      purpose: "Nutrition & Recovery",
-      price: 39.95,
-      imageUrl: "" // Add your image URL here
-    },
-    {
-      id: 3,
-      name: "Meditation Cushion Set",
-      brand: "MindfulSpace",
-      store: "ZenLiving.com",
-      purpose: "Meditation & Relaxation",
-      price: 59.99,
-      imageUrl: "" // Add your image URL here
-    },
-    {
-      id: 4,
-      name: "Smart Water Bottle",
-      brand: "HydroTech",
-      store: "FitnessGear.com",
-      purpose: "Hydration & Tracking",
-      price: 34.50,
-      imageUrl: "" // Add your image URL here
-    },
-    {
-      id: 5,
-      name: "Fitness Resistance Bands",
-      brand: "FlexStrength",
-      store: "HomeGym.com",
-      purpose: "Strength Training",
-      price: 24.99,
-      imageUrl: "" // Add your image URL here
-    },
-    {
-      id: 6,
-      name: "Herbal Sleep Aid",
-      brand: "NaturalRest",
-      store: "HolisticHealth.com",
-      purpose: "Sleep & Relaxation",
-      price: 19.95,
-      imageUrl: "" // Add your image URL here
-    }
-  ];
-
-  // Shopping cart
-  let cart = [];
-
-  // DOM elements
-  const productGrid = document.getElementById('product-grid');
-  const cartButton = document.getElementById('cart-button');
-  const cartModal = document.getElementById('cart-modal');
-  const closeCart = document.getElementById('close-cart');
-  const cartItems = document.getElementById('cart-items');
-  const cartCount = document.getElementById('cart-count');
-  const cartTotal = document.getElementById('cart-total');
- 
-  const continueShoppingBtn = document.getElementById('continue-shopping');
-
-  // Display products
-  function displayProducts() {
-    productGrid.innerHTML = '';
-    products.forEach(product => {
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-
-      // Create image element
-      const imageHtml = product.imageUrl
-              ? `<div class="product-image" style="background-image: url('${product.imageUrl}');"></div>`
-              : `<div class="product-image"> Product Image</div>`;
-
-      productCard.innerHTML = `
-                <div class="product-content">
-                    ${imageHtml}
-                    <div class="store-badge">
-                        ${product.store}
-                    </div>
-                    <h3 class="product-name">${product.name}</h3>
-                    <p class="product-brand">${product.brand}</p>
-                    <p class="product-purpose">${product.purpose}</p>
-                    <div class="product-footer">
-                        <span class="product-price">$${product.price.toFixed(2)}</span>
-                        <button class="btn-add" data-id="${product.id}">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `;
-      productGrid.appendChild(productCard);
-    });
-
-    // Add event listeners to "Add to Cart" buttons after they're created
-    document.querySelectorAll('.btn-add').forEach(button => {
-      button.addEventListener('click', addToCart);
-    });
-  }
-
-  // Add product to cart
-  function addToCart(event) {
-    const productId = parseInt(event.target.getAttribute('data-id'));
-    const product = products.find(p => p.id === productId);
-
-    // Check if product is already in cart
-    const existingItem = cart.find(item => item.id === productId);
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      cart.push({
-        ...product,
-        quantity: 1
-      });
-    }
-
-    updateCart();
-
-    // Show visual feedback
-    const button = event.target;
-    const originalText = button.textContent;
-    button.textContent = "Added!";
-    button.classList.add('added');
-    setTimeout(() => {
-      button.textContent = originalText;
-      button.classList.remove('added');
-    }, 1000);
-  }
-
-  // Decrease item quantity
-  function decreaseQuantity(event) {
-    const productId = parseInt(event.target.closest('button').getAttribute('data-id'));
-    const item = cart.find(item => item.id === productId);
-
-    if (item.quantity > 1) {
-      item.quantity -= 1;
-    } else {
-      cart = cart.filter(item => item.id !== productId);
-    }
-
-    updateCart();
-  }
-
-  // Increase item quantity
-  function increaseQuantity(event) {
-    const productId = parseInt(event.target.closest('button').getAttribute('data-id'));
-    const item = cart.find(item => item.id === productId);
-    item.quantity += 1;
-    updateCart();
-  }
-
-  // Remove item from cart
-  function removeItem(event) {
-    const productId = parseInt(event.target.getAttribute('data-id'));
-    cart = cart.filter(item => item.id !== productId);
-    updateCart();
-  }
-
-  // Toggle cart modal
-  function toggleCartModal() {
-    cartModal.classList.toggle('hidden');
-  }
-
-  // Update cart display
-  function updateCart() {
-    // Update cart count
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-
-    // Update cart items
-    cartItems.innerHTML = '';
-
-    if (cart.length === 0) {
-      const emptyMessage = document.createElement('div');
-      emptyMessage.className = 'empty-message';
-      emptyMessage.textContent = 'Your cart is empty. Add some wellness products!';
-      cartItems.appendChild(emptyMessage);
-    
-    } else {
-     
-
-      cart.forEach(item => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-
-        // Create cart item image
-        const cartImageHtml = item.imageUrl
-                ? `<div class="cart-item-image" style="background-image: url('${item.imageUrl}');"></div>`
-                : `<div class="cart-item-image">📷</div>`;
-
-        cartItem.innerHTML = `
-                    <div class="cart-item-info">
-                        ${cartImageHtml}
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <p>${item.brand} • ${item.store}</p>
-                        </div>
-                    </div>
-                    <div class="quantity-controls">
-                        <button
-                        style="padding: 4px 8px; font-size: 12px; width: 60px; height: 30px;"
-                        class="qty-btn decrease-qty" data-id="${item.id}">−</button>
-                        <span class="quantity">${item.quantity}</span>
-                        <button
-                          style="padding: 4px 8px; font-size: 12px; width: 60px; height: 30px;"
-                        class="qty-btn increase-qty" data-id="${item.id}">+</button>
-                    </div>
-                    <div class="cart-item-price">
-                        <div class="price">$${(item.price * item.quantity).toFixed(2)}</div>
-                        <button
-                        class="remove-btn" data-id="${item.id}">Remove</button>
-                    </div>
-                `;
-        cartItems.appendChild(cartItem);
-      });
-    }
-
-    // Add event listeners to cart item buttons
-    document.querySelectorAll('.decrease-qty').forEach(button => {
-      button.addEventListener('click', decreaseQuantity);
-    });
-
-    document.querySelectorAll('.increase-qty').forEach(button => {
-      button.addEventListener('click', increaseQuantity);
-    });
-
-    document.querySelectorAll('.remove-btn').forEach(button => {
-      button.addEventListener('click', removeItem);
-    });
-
-    // Update cart total
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    cartTotal.textContent = total.toFixed(2);
-  }
-
-  // Event listeners
-  cartButton.addEventListener('click', toggleCartModal);
-  closeCart.addEventListener('click', toggleCartModal);
-  continueShoppingBtn.addEventListener('click', toggleCartModal);
-
-
-
-  // Close modal when clicking outside
-  cartModal.addEventListener('click', (event) => {
-    if (event.target === cartModal) {
-      toggleCartModal();
-    }
-  });
-
-  // Initialize the page
-  displayProducts();
-</script>
-</body>
-</html></title>
-</head>
-<body>
-
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 // JSON Server configuration
 const API_BASE_URL = 'http://localhost:3000'; // Change this to your JSON server URL
 
