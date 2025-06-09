@@ -16,7 +16,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: linear-gradient(160deg, #e9dab5 0%, #a7d0e5 100%);
       min-height: 100vh;
       color: #333;
@@ -478,6 +478,285 @@
       left: 100%;
     }
 
+    /* Timer Section */
+    .timer-section {
+      display: none;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-bottom: 2rem;
+    }
+
+    .timer-section.active {
+      display: block;
+      animation: slideIn 0.5s ease-out;
+    }
+
+    .timer-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .timer-workout-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1a5653;
+      margin-bottom: 0.5rem;
+    }
+
+    .timer-workout-subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .workout-progress {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2c7873, #22c55e);
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .timer-main {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .timer-display {
+      text-align: center;
+    }
+
+    .current-exercise {
+      margin-bottom: 2rem;
+    }
+
+    .current-exercise-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a5653;
+      margin-bottom: 0.5rem;
+    }
+
+    .current-exercise-desc {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    .timer-circle {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 2rem;
+    }
+
+    .circle-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 8px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .circle-progress {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 8px solid transparent;
+      border-top-color: #2c7873;
+      transform: rotate(-90deg);
+      transition: transform 0.3s ease;
+    }
+
+    .timer-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1a5653;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .control-btn {
+      background: #2c7873;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 100px;
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(44, 120, 115, 0.3);
+    }
+
+    .control-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .control-btn.pause {
+      background: #f59e0b;
+    }
+
+    .control-btn.pause:hover {
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    }
+
+    .control-btn.stop {
+      background: #ef4444;
+    }
+
+    .control-btn.stop:hover {
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.3);
+    }
+
+    .control-btn.next {
+      background: #22c55e;
+    }
+
+    .control-btn.next:hover {
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .timer-sidebar {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+    }
+
+    .sidebar-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a5653;
+      margin-bottom: 1rem;
+    }
+
+    .timer-exercise-list {
+      list-style: none;
+    }
+
+    .timer-exercise-item {
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 0.8rem;
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #ccc;
+      transition: all 0.3s;
+    }
+
+    .timer-exercise-item.active {
+      border-left-color: #2c7873;
+      background: rgba(44, 120, 115, 0.1);
+      transform: translateX(5px);
+    }
+
+    .timer-exercise-item.completed {
+      border-left-color: #22c55e;
+      background: rgba(34, 197, 94, 0.1);
+      opacity: 0.7;
+    }
+
+    .timer-exercise-name {
+      font-weight: 600;
+      color: #1a5653;
+      margin-bottom: 0.3rem;
+    }
+
+    .timer-exercise-details {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Rest Timer Styles */
+    .timer-section.rest-mode .circle-progress {
+      border-top-color: #f59e0b;
+    }
+
+    .timer-section.rest-mode .current-exercise-name {
+      color: #f59e0b;
+    }
+
+    .timer-section.rest-mode .timer-text {
+      color: #f59e0b;
+    }
+
+    /* Workout Complete Styles */
+    .workout-complete {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .workout-complete h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #22c55e;
+      margin-bottom: 1rem;
+    }
+
+    .workout-complete p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .workout-complete-btn {
+      background: #22c55e;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .workout-complete-btn:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+    }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .workout-list {
@@ -490,6 +769,34 @@
 
       .exercise-details {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .timer-main {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .timer-circle {
+        width: 150px;
+        height: 150px;
+      }
+
+      .timer-text {
+        font-size: 2.5rem;
+      }
+
+      .current-exercise-name {
+        font-size: 1.5rem;
+      }
+
+      .timer-workout-title {
+        font-size: 2rem;
+      }
+
+      .control-btn {
+        padding: 0.6rem 1rem;
+        min-width: 80px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -511,7 +818,7 @@
     <a href="../../shopping.html">Shop</a>
     <a href="../../quiz.html">Quiz</a>
     <a href="indexWorkouts.html">Workouts</a>
-    <a href="#">Contact</a>
+    <a href="../../recipe.html">Recipes</a>
 
     <!-- Auth button (shown when user is not logged in) -->
     <div class="auth-buttons" id="authButtons">
@@ -526,7 +833,6 @@
     </div>
   </div>
 </nav>
-
 
 <!-- Main Container -->
 <div class="container">
@@ -558,11 +864,54 @@
 
     <button class="start-workout-btn" id="startWorkoutBtn" onclick="startWorkout()">Start This Workout</button>
   </div>
+
+  <!-- Timer Section -->
+  <div class="timer-section" id="timerSection">
+    <div class="timer-header">
+      <h1 class="timer-workout-title" id="timerWorkoutTitle">Workout in Progress</h1>
+      <p class="timer-workout-subtitle" id="timerWorkoutSubtitle">Follow along with your workout</p>
+      <div class="workout-progress">
+        <div class="progress-bar">
+          <div class="progress-bar-fill" id="timerProgressBar"></div>
+        </div>
+        <div class="progress-text" id="timerProgressText">Exercise 1 of 5</div>
+      </div>
+    </div>
+
+    <div class="timer-main">
+      <div class="timer-display">
+        <div class="current-exercise">
+          <h2 class="current-exercise-name" id="currentExerciseName">Push-ups</h2>
+          <p class="current-exercise-desc" id="currentExerciseDesc">3 sets × 12 reps</p>
+        </div>
+
+        <div class="timer-circle">
+          <div class="circle-bg"></div>
+          <div class="circle-progress" id="timerCircleProgress"></div>
+          <div class="timer-text" id="timerDisplay">45</div>
+        </div>
+
+        <div class="timer-controls">
+          <button class="control-btn" id="timerStartBtn">START</button>
+          <button class="control-btn pause" id="timerPauseBtn" style="display: none;">PAUSE</button>
+          <button class="control-btn stop" id="timerStopBtn">STOP</button>
+          <button class="control-btn next" id="timerNextBtn">NEXT</button>
+        </div>
+      </div>
+
+      <div class="timer-sidebar">
+        <h3 class="sidebar-title">Exercise List</h3>
+        <ul class="timer-exercise-list" id="timerExerciseList">
+          <!-- Timer exercise list will be populated here -->
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" style="width: 100%;">
   <div class="footer-content">
     <div class="footer-section">
       <div class="footer-brand">
@@ -574,18 +923,16 @@
     <div class="footer-section">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Quiz</a></li>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../shopping.html">Shop</a></li>
+        <li><a href="../../quiz.html">Quiz</a></li>
       </ul>
     </div>
     <div class="footer-section">
       <h4>Resources</h4>
       <ul>
-        <li><a href="#">Recipes</a></li>
-        <li><a href="#">Workout Plans</a></li>
-        <li><a href="#">Health Tips</a></li>
+        <li><a href="../../recipe.html">Recipes</a></li>
+        <li><a href="indexWorkouts.html">Workout Plans</a></li>
       </ul>
     </div>
     <div class="footer-section">
@@ -647,247 +994,436 @@
 <div class="notification" id="notification"></div>
 
 <script>
-  // Sample workout data
-  const workoutLibrary = [
-    {
-      id: 1,
-      title: "Full Body Strength",
-      duration: "45 min",
-      calories: "350 cal",
-      difficulty: "Intermediate",
-      exercises: [
-        { name: "Push-ups", sets: 3, reps: 12, restTime: 60 },
-        { name: "Squats", sets: 3, reps: 15, restTime: 60 },
-        { name: "Plank", sets: 3, duration: 45, restTime: 45 },
-        { name: "Lunges", sets: 3, reps: 10, restTime: 60 },
-        { name: "Mountain Climbers", sets: 3, duration: 30, restTime: 45 }
-      ],
-      description: "A comprehensive full-body workout targeting all major muscle groups"
-    },
-    {
-      id: 2,
-      title: "HIIT Cardio Blast",
-      duration: "30 min",
-      calories: "400 cal",
-      difficulty: "Advanced",
-      exercises: [
-        { name: "Burpees", sets: 4, reps: 8, restTime: 30 },
-        { name: "High Knees", sets: 4, duration: 30, restTime: 30 },
-        { name: "Jump Squats", sets: 4, reps: 12, restTime: 30 },
-        { name: "Push-up to T", sets: 4, reps: 6, restTime: 30 },
-        { name: "Sprint in Place", sets: 4, duration: 20, restTime: 40 }
-      ],
-      description: "High-intensity interval training for maximum calorie burn"
-    },
-    {
-      id: 3,
-      title: "Upper Body Focus",
-      duration: "35 min",
-      calories: "280 cal",
-      difficulty: "Beginner",
-      exercises: [
-        { name: "Wall Push-ups", sets: 3, reps: 15, restTime: 60 },
-        { name: "Arm Circles", sets: 3, duration: 30, restTime: 30 },
-        { name: "Tricep Dips", sets: 3, reps: 10, restTime: 60 },
-        { name: "Shoulder Shrugs", sets: 3, reps: 12, restTime: 45 },
-        { name: "Chest Stretch", sets: 2, duration: 30, restTime: 30 }
-      ],
-      description: "Perfect starter workout focusing on upper body strength"
-    },
-    {
-      id: 4,
-      title: "Core Crusher",
-      duration: "25 min",
-      calories: "200 cal",
-      difficulty: "Intermediate",
-      exercises: [
-        { name: "Crunches", sets: 3, reps: 20, restTime: 45 },
-        { name: "Russian Twists", sets: 3, reps: 16, restTime: 45 },
-        { name: "Dead Bug", sets: 3, reps: 12, restTime: 60 },
-        { name: "Bicycle Crunches", sets: 3, reps: 20, restTime: 45 },
-        { name: "Plank Hold", sets: 3, duration: 60, restTime: 60 }
-      ],
-      description: "Intense core workout to build abdominal strength and stability"
-    },
-    {
-      id: 5,
-      title: "Flexibility & Stretch",
-      duration: "20 min",
-      calories: "80 cal",
-      difficulty: "Beginner",
-      exercises: [
-        { name: "Forward Fold", sets: 2, duration: 30, restTime: 15 },
-        { name: "Cat-Cow Stretch", sets: 2, reps: 10, restTime: 30 },
-        { name: "Child's Pose", sets: 2, duration: 45, restTime: 15 },
-        { name: "Seated Spinal Twist", sets: 2, duration: 30, restTime: 30 },
-        { name: "Hip Flexor Stretch", sets: 2, duration: 30, restTime: 30 }
-      ],
-      description: "Gentle stretching routine to improve flexibility and reduce tension"
-    }
-  ];
+// Sample workout data
+const workoutLibrary = [
+{
+id: 1,
+title: "Full Body Strength",
+duration: "45 min",
+calories: "350 cal",
+difficulty: "Intermediate",
+exercises: [
+{ name: "Push-ups", sets: 3, reps: 12, restTime: 60 },
+{ name: "Squats", sets: 3, reps: 15, restTime: 60 },
+{ name: "Plank", sets: 3, duration: 45, restTime: 45 },
+{ name: "Lunges", sets: 3, reps: 10, restTime: 60 },
+{ name: "Mountain Climbers", sets: 3, duration: 30, restTime: 45 }
+],
+description: "A comprehensive full-body workout targeting all major muscle groups"
+},
+{
+id: 2,
+title: "HIIT Cardio Blast",
+duration: "30 min",
+calories: "400 cal",
+difficulty: "Advanced",
+exercises: [
+{ name: "Burpees", sets: 4, reps: 8, restTime: 30 },
+{ name: "High Knees", sets: 4, duration: 30, restTime: 30 },
+{ name: "Jump Squats", sets: 4, reps: 12, restTime: 30 },
+{ name: "Push-up to T", sets: 4, reps: 6, restTime: 30 },
+{ name: "Sprint in Place", sets: 4, duration: 20, restTime: 40 }
+],
+description: "High-intensity interval training for maximum calorie burn"
+},
+{
+id: 3,
+title: "Upper Body Focus",
+duration: "35 min",
+calories: "280 cal",
+difficulty: "Beginner",
+exercises: [
+{ name: "Wall Push-ups", sets: 3, reps: 15, restTime: 60 },
+{ name: "Arm Circles", sets: 3, duration: 30, restTime: 30 },
+{ name: "Tricep Dips", sets: 3, reps: 10, restTime: 60 },
+{ name: "Shoulder Shrugs", sets: 3, reps: 12, restTime: 45 },
+{ name: "Arm Raises", sets: 3, reps: 8, restTime: 45 }
+],
+description: "Focus on building upper body strength with beginner-friendly exercises"
+},
+{
+id: 4,
+title: "Core Crusher",
+duration: "25 min",
+calories: "200 cal",
+difficulty: "Intermediate",
+exercises: [
+{ name: "Crunches", sets: 4, reps: 20, restTime: 45 },
+{ name: "Russian Twists", sets: 4, reps: 15, restTime: 45 },
+{ name: "Bicycle Crunches", sets: 4, reps: 12, restTime: 45 },
+{ name: "Dead Bug", sets: 3, reps: 10, restTime: 60 },
+{ name: "Side Plank", sets: 3, duration: 30, restTime: 60 }
+],
+description: "Strengthen your core with targeted abdominal exercises"
+},
+{
+id: 5,
+title: "Lower Body Power",
+duration: "40 min",
+calories: "320 cal",
+difficulty: "Advanced",
+exercises: [
+{ name: "Jump Squats", sets: 4, reps: 12, restTime: 60 },
+{ name: "Single Leg Deadlifts", sets: 3, reps: 8, restTime: 75 },
+{ name: "Bulgarian Split Squats", sets: 3, reps: 10, restTime: 60 },
+{ name: "Calf Raises", sets: 4, reps: 20, restTime: 45 },
+{ name: "Wall Sit", sets: 3, duration: 45, restTime: 90 }
+],
+description: "Build explosive lower body power and endurance"
+}
+];
 
-  let currentWorkout = null;
-  let completedWorkouts = new Set(); // Track completed workouts
+// Global variables
+let currentWorkout = null;
+let currentExerciseIndex = 0;
+let timerInterval = null;
+let timeRemaining = 0;
+let isRunning = false;
+let isRestPeriod = false;
+// Modified: Store completion data with timestamps for session-only completion tracking
+let completedWorkouts = [];
 
-  // Initialize the page
-  document.addEventListener('DOMContentLoaded', function() {
-    // Load completed workouts from memory (in a real app, this would be from a database)
-    populateWorkoutLibrary();
-  });
+// Initialize the app
+document.addEventListener('DOMContentLoaded', function() {
+populateWorkoutLibrary();
+setupEventListeners();
+});
 
-  function populateWorkoutLibrary() {
-    const libraryList = document.getElementById('libraryList');
-    libraryList.innerHTML = '';
+function setupEventListeners() {
+// Timer controls
+document.getElementById('timerStartBtn').addEventListener('click', startTimer);
+document.getElementById('timerPauseBtn').addEventListener('click', pauseTimer);
+document.getElementById('timerStopBtn').addEventListener('click', stopWorkout);
+document.getElementById('timerNextBtn').addEventListener('click', nextExercise);
 
-    workoutLibrary.forEach(workout => {
-      const workoutCard = createWorkoutCard(workout);
-      libraryList.appendChild(workoutCard);
-    });
-  }
+// Optional: Add a reset button to clear all completion status
+//const resetBtn = document.createElement('button');
+resetBtn.textContent = 'Reset All Completions';
+resetBtn.className = 'reset-completions-btn';
+resetBtn.onclick = resetAllCompletions;
+resetBtn.style.cssText = `
+position: fixed;
+bottom: 20px;
+right: 20px;
+padding: 10px 15px;
+background: #ff4757;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 12px;
+z-index: 1000;
+`;
+document.body.appendChild(resetBtn);
+}
 
-  function createWorkoutCard(workout) {
-    const card = document.createElement('div');
-    card.className = 'workout-card';
+function resetAllCompletions() {
+completedWorkouts = [];
+populateWorkoutLibrary();
+}
 
-    // Check if workout is completed
-    if (completedWorkouts.has(workout.id)) {
-      card.classList.add('completed');
-    }
+function populateWorkoutLibrary() {
+const libraryList = document.getElementById('libraryList');
+libraryList.innerHTML = '';
 
-    const exerciseNames = workout.exercises.slice(0, 3).map(ex => ex.name);
-    const moreCount = workout.exercises.length > 3 ? workout.exercises.length - 3 : 0;
+workoutLibrary.forEach(workout => {
+const isCompleted = completedWorkouts.includes(workout.id);
+const workoutCard = document.createElement('div');
+workoutCard.className = `workout-card ${isCompleted ? 'completed' : ''}`;
+workoutCard.onclick = () => showWorkoutDetails(workout);
 
-    card.innerHTML = `
-    <div class="workout-header">
-      <h3 class="workout-title">${workout.title}</h3>
-      <div class="completion-status">Completed</div>
-      <div class="completion-checkmark">✓</div>
-    </div>
-    <div class="workout-stats">
-      <div class="stat-item">
-        <div class="stat-value">${workout.duration}</div>
-        <div class="stat-label">Duration</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">${workout.calories}</div>
-        <div class="stat-label">Calories</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value">${workout.difficulty}</div>
-        <div class="stat-label">Level</div>
-      </div>
-    </div>
-    <div class="workout-exercises">
-      <div class="exercise-preview">
-        ${exerciseNames.map(name => `<span class="exercise-tag">${name}</span>`).join('')}
-        ${moreCount > 0 ? `<span class="exercise-tag">+${moreCount} more</span>` : ''}
-      </div>
-    </div>
-    <button class="view-details-btn" onclick="showWorkoutDetails(${workout.id})">
-      View Details
-    </button>
-  `;
+workoutCard.innerHTML = `
+<div class="workout-header">
+  <div>
+    <h3 class="workout-title">${workout.title}</h3>
+    <div class="completion-status">Completed ✓</div>
+    <div class="completion-checkmark">✓</div>
+  </div>
+</div>
 
-    return card;
-  }
+<div class="workout-stats">
+  <div class="stat-item">
+    <div class="stat-value">${workout.duration}</div>
+    <div class="stat-label">Duration</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">${workout.calories}</div>
+    <div class="stat-label">Calories</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">${workout.difficulty}</div>
+    <div class="stat-label">Level</div>
+  </div>
+</div>
 
-  function showWorkoutDetails(workoutId) {
-    const workout = workoutLibrary.find(w => w.id === workoutId);
+<div class="workout-exercises">
+  <div class="exercise-preview">
+    ${workout.exercises.slice(0, 3).map(ex => `<span class="exercise-tag">${ex.name}</span>`).join('')}
+    ${workout.exercises.length > 3 ? `<span class="exercise-tag">+${workout.exercises.length - 3} more</span>` : ''}
+  </div>
+</div>
 
-    if (!workout) return;
+<button class="view-details-btn">View Details</button>
+`;
 
-    currentWorkout = workout;
+libraryList.appendChild(workoutCard);
+});
+}
 
-    document.getElementById('homeView').style.display = 'none';
-    document.getElementById('exerciseDetailView').classList.add('active');
-    document.getElementById('detailTitle').textContent = workout.title;
+function showWorkoutDetails(workout) {
+currentWorkout = workout;
 
-    const exerciseList = document.getElementById('exerciseDetailList');
-    exerciseList.innerHTML = '';
+document.getElementById('homeView').style.display = 'none';
+document.getElementById('exerciseDetailView').classList.add('active');
 
-    workout.exercises.forEach(exercise => {
-      const listItem = document.createElement('li');
-      listItem.className = 'exercise-item';
+document.getElementById('detailTitle').textContent = workout.title;
 
-      const repsOrDuration = exercise.reps ?
-              `${exercise.reps} reps` :
-              `${exercise.duration} seconds`;
+const exerciseList = document.getElementById('exerciseDetailList');
+exerciseList.innerHTML = '';
 
-      listItem.innerHTML = `
-      <div class="exercise-name">${exercise.name}</div>
-      <div class="exercise-details">
-        <div class="exercise-detail-item">
-          <div class="exercise-detail-value">${exercise.sets}</div>
-          <div class="exercise-detail-label">Sets</div>
-        </div>
-        <div class="exercise-detail-item">
-          <div class="exercise-detail-value">${repsOrDuration}</div>
-          <div class="exercise-detail-label">${exercise.reps ? 'Reps' : 'Duration'}</div>
-        </div>
-        <div class="exercise-detail-item">
-          <div class="exercise-detail-value">${exercise.restTime}s</div>
-          <div class="exercise-detail-label">Rest</div>
-        </div>
-      </div>
-    `;
+workout.exercises.forEach((exercise, index) => {
+const exerciseItem = document.createElement('li');
+exerciseItem.className = 'exercise-item';
 
-      exerciseList.appendChild(listItem);
-    });
+const detailsHTML = exercise.reps
+? `<div class="exercise-detail-item">
+  <div class="exercise-detail-value">${exercise.sets}</div>
+  <div class="exercise-detail-label">Sets</div>
+</div>
+<div class="exercise-detail-item">
+  <div class="exercise-detail-value">${exercise.reps}</div>
+  <div class="exercise-detail-label">Reps</div>
+</div>`
+: `<div class="exercise-detail-item">
+  <div class="exercise-detail-value">${exercise.sets}</div>
+  <div class="exercise-detail-label">Sets</div>
+</div>
+<div class="exercise-detail-item">
+  <div class="exercise-detail-value">${exercise.duration}s</div>
+  <div class="exercise-detail-label">Duration</div>
+</div>`;
 
-    // Update button text based on completion status
-    const startBtn = document.getElementById('startWorkoutBtn');
-    if (completedWorkouts.has(workout.id)) {
-      startBtn.textContent = 'Do This Workout Again';
-    } else {
-      startBtn.textContent = 'Start This Workout';
-    }
-  }
+exerciseItem.innerHTML = `
+<h4 class="exercise-name">${exercise.name}</h4>
+<div class="exercise-details">
+  ${detailsHTML}
+  <div class="exercise-detail-item">
+    <div class="exercise-detail-value">${exercise.restTime}s</div>
+    <div class="exercise-detail-label">Rest</div>
+  </div>
+</div>
+`;
 
-  function showHome() {
-    document.getElementById('homeView').style.display = 'block';
-    document.getElementById('exerciseDetailView').classList.remove('active');
-  }
+exerciseList.appendChild(exerciseItem);
+});
+}
 
-  function startWorkout() {
-    if (!currentWorkout) return;
+function showHome() {
+document.getElementById('homeView').style.display = 'block';
+document.getElementById('exerciseDetailView').classList.remove('active');
+document.getElementById('timerSection').classList.remove('active');
+}
 
-    const isCompleted = completedWorkouts.has(currentWorkout.id);
-    const actionText = isCompleted ? 'repeat' : 'start';
+function startWorkout() {
+if (!currentWorkout) return;
 
-    // Simulate workout start
-    const confirmed = confirm(`${actionText === 'start' ? 'Start' : 'Repeat'} "${currentWorkout.title}" workout?\n\nThis will begin your workout session.`);
+currentExerciseIndex = 0;
+isRestPeriod = false;
 
-    if (confirmed) {
-      // Mark workout as completed
-      completedWorkouts.add(currentWorkout.id);
+document.getElementById('exerciseDetailView').classList.remove('active');
+document.getElementById('timerSection').classList.add('active');
 
-      // Show completion message
-      alert(`Congratulations! You've completed "${currentWorkout.title}" workout! 🎉\n\nGreat job on finishing your workout!`);
+document.getElementById('timerWorkoutTitle').textContent = currentWorkout.title;
+document.getElementById('timerWorkoutSubtitle').textContent = currentWorkout.description;
 
-      // Refresh the workout library to show the completed status
-      populateWorkoutLibrary();
+setupTimerExerciseList();
+loadCurrentExercise();
+updateProgress();
+}
 
-      // Go back to home view
-      showHome();
-    }
-  }
+function setupTimerExerciseList() {
+const timerExerciseList = document.getElementById('timerExerciseList');
+timerExerciseList.innerHTML = '';
 
-  // Account/Authentication related functions (basic implementation)
-  document.getElementById('myAccountBtn').addEventListener('click', function() {
-    // Simple mock login
-    const username = prompt('Enter your username (demo):');
-    if (username) {
-      document.getElementById('authButtons').style.display = 'none';
-      document.getElementById('userInfo').style.display = 'flex';
-      document.getElementById('userNameDisplay').textContent = username;
-      document.getElementById('userAvatar').textContent = username.charAt(0).toUpperCase();
-    }
-  });
+currentWorkout.exercises.forEach((exercise, index) => {
+const exerciseItem = document.createElement('li');
+exerciseItem.className = `timer-exercise-item ${index === 0 ? 'active' : ''}`;
+exerciseItem.id = `timer-exercise-${index}`;
 
-  document.getElementById('logoutButton').addEventListener('click', function() {
-    document.getElementById('authButtons').style.display = 'block';
-    document.getElementById('userInfo').style.display = 'none';
-  });
+const details = exercise.reps
+? `${exercise.sets} sets × ${exercise.reps} reps`
+: `${exercise.sets} sets × ${exercise.duration}s`;
+
+exerciseItem.innerHTML = `
+<div class="timer-exercise-name">${exercise.name}</div>
+<div class="timer-exercise-details">${details}</div>
+`;
+
+timerExerciseList.appendChild(exerciseItem);
+});
+}
+
+function loadCurrentExercise() {
+if (currentExerciseIndex >= currentWorkout.exercises.length) {
+completeWorkout();
+return;
+}
+
+const exercise = currentWorkout.exercises[currentExerciseIndex];
+
+document.getElementById('currentExerciseName').textContent = exercise.name;
+
+const details = exercise.reps
+? `${exercise.sets} sets × ${exercise.reps} reps`
+: `${exercise.sets} sets × ${exercise.duration} seconds`;
+
+document.getElementById('currentExerciseDesc').textContent = details;
+
+// Set initial timer (45 seconds for exercise, rest time for rest)
+timeRemaining = isRestPeriod ? exercise.restTime : 45;
+updateTimerDisplay();
+updateTimerCircle();
+
+// Update exercise list highlighting
+document.querySelectorAll('.timer-exercise-item').forEach((item, index) => {
+item.classList.remove('active', 'completed');
+if (index < currentExerciseIndex) {
+item.classList.add('completed');
+} else if (index === currentExerciseIndex) {
+item.classList.add('active');
+}
+});
+
+// Update timer section class for rest mode
+const timerSection = document.getElementById('timerSection');
+if (isRestPeriod) {
+timerSection.classList.add('rest-mode');
+document.getElementById('currentExerciseName').textContent = 'Rest Time';
+document.getElementById('currentExerciseDesc').textContent = `Prepare for: ${exercise.name}`;
+} else {
+timerSection.classList.remove('rest-mode');
+}
+}
+
+function startTimer() {
+if (isRunning) return;
+
+isRunning = true;
+document.getElementById('timerStartBtn').style.display = 'none';
+document.getElementById('timerPauseBtn').style.display = 'inline-block';
+
+timerInterval = setInterval(() => {
+timeRemaining--;
+updateTimerDisplay();
+updateTimerCircle();
+
+if (timeRemaining <= 0) {
+clearInterval(timerInterval);
+isRunning = false;
+
+if (isRestPeriod) {
+// Rest period finished, move to next exercise
+isRestPeriod = false;
+currentExerciseIndex++;
+loadCurrentExercise();
+} else {
+// Exercise finished, start rest period
+isRestPeriod = true;
+loadCurrentExercise();
+}
+
+document.getElementById('timerStartBtn').style.display = 'inline-block';
+document.getElementById('timerPauseBtn').style.display = 'none';
+}
+}, 1000);
+}
+
+function pauseTimer() {
+if (!isRunning) return;
+
+clearInterval(timerInterval);
+isRunning = false;
+document.getElementById('timerStartBtn').style.display = 'inline-block';
+document.getElementById('timerPauseBtn').style.display = 'none';
+}
+
+function nextExercise() {
+clearInterval(timerInterval);
+isRunning = false;
+
+if (isRestPeriod) {
+isRestPeriod = false;
+currentExerciseIndex++;
+} else {
+isRestPeriod = true;
+}
+
+loadCurrentExercise();
+updateProgress();
+
+document.getElementById('timerStartBtn').style.display = 'inline-block';
+document.getElementById('timerPauseBtn').style.display = 'none';
+}
+
+function stopWorkout() {
+clearInterval(timerInterval);
+isRunning = false;
+
+if (confirm('Are you sure you want to stop the workout?')) {
+showHome();
+document.getElementById('timerStartBtn').style.display = 'inline-block';
+document.getElementById('timerPauseBtn').style.display = 'none';
+}
+}
+
+function completeWorkout() {
+// Modified: Only mark as completed for current session (no localStorage)
+if (!completedWorkouts.includes(currentWorkout.id)) {
+completedWorkouts.push(currentWorkout.id);
+}
+
+// Show completion message
+const timerSection = document.getElementById('timerSection');
+timerSection.innerHTML = `
+<div class="workout-complete">
+  <h2>🎉 Workout Complete!</h2>
+  <p>Great job finishing "${currentWorkout.title}"!</p>
+  <p>You burned approximately ${currentWorkout.calories} and worked out for ${currentWorkout.duration}.</p>
+  <button class="workout-complete-btn" onclick="showHome()">Back to Workouts</button>
+</div>
+`;
+
+// Refresh the workout library to show completion status
+setTimeout(() => {
+populateWorkoutLibrary();
+}, 100);
+}
+
+function updateTimerDisplay() {
+const minutes = Math.floor(timeRemaining / 60);
+const seconds = timeRemaining % 60;
+document.getElementById('timerDisplay').textContent =
+`${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+function updateTimerCircle() {
+const totalTime = isRestPeriod
+? currentWorkout.exercises[currentExerciseIndex].restTime
+: 45;
+const progress = ((totalTime - timeRemaining) / totalTime) * 360;
+document.getElementById('timerCircleProgress').style.transform =
+`rotate(${-90 + progress}deg)`;
+}
+
+function updateProgress() {
+const totalExercises = currentWorkout.exercises.length;
+const currentProgress = (currentExerciseIndex / totalExercises) * 100;
+
+document.getElementById('timerProgressBar').style.width = `${currentProgress}%`;
+document.getElementById('timerProgressText').textContent =
+`Exercise ${currentExerciseIndex + 1} of ${totalExercises}`;
+}
 </script>
+
 </body>
 </html>
