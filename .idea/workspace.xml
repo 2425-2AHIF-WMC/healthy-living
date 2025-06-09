@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="07f270b3-b08a-412f-b600-c04a53c5ddeb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,7 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/simun/Documents/2. Klasse/WMC/Übung 2.Test/moveToMethode_2.Test&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -51,7 +52,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
       </set>
     </attachedChunks>
   </component>
@@ -66,6 +67,14 @@
       <workItem from="1745917460194" duration="1196000" />
       <workItem from="1748799761826" duration="12000000" />
       <workItem from="1748940169091" duration="764000" />
+      <workItem from="1749362417606" duration="12000" />
+      <workItem from="1749368753539" duration="606000" />
+      <workItem from="1749376963417" duration="426000" />
+      <workItem from="1749378926187" duration="3496000" />
+      <workItem from="1749400926863" duration="783000" />
+      <workItem from="1749450576131" duration="746000" />
+      <workItem from="1749457188146" duration="10000" />
+      <workItem from="1749458361142" duration="1039000" />
     </task>
     <servers />
   </component>

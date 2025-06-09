@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Living</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/indexWorkoutsStyle.css">
+    <script src="../scripts/indexWorkouts.js" defer type="module"></script>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="#" class="navbar-brand">Healthy Living</a>
+    <div class="navbar-links">
+        <a href="../../index.html">Home</a>
+        <a href="../../shopping.html">Shop</a>
+        <a href="../../quiz.html">Quiz</a>
+        <a href="indexWorkouts.html">Workouts</a>
+        <a href="#">Contact</a>
+
+        <!-- Auth button (shown when user is not logged in) -->
+        <div class="auth-buttons" id="authButtons">
+            <button id="myAccountBtn">My Account</button>
+        </div>
+
+        <!-- User info (shown when user is logged in) -->
+        <div class="user-info" id="userInfo">
+            <div class="user-avatar" id="userAvatar"></div>
+            <span id="userNameDisplay"></span>
+            <button id="logoutButton">Logout</button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="bg-animation">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <h1>Workout Hub</h1>
+    <p>Transform your fitness journey with personalized workouts, expert guidance, and proven results</p>
+    <div class="welcome-message" id="welcomeMessage"></div>
+</header>
+<!-- Main Container -->
+<div class="container">
+    <div class="workout-grid">
+        <!-- Custom Workouts Section -->
+        <div class="workout-card custom-workouts loading click-effect">
+            <div class="workout-icon">🎯</div>
+            <h2>Build Your Perfect Workout</h2>
+            <p>Craft unique training experiences that adapt to your lifestyle, fitness goals, and personal preferences.</p>
+            <ul class="features-list">
+                <li>Set personalized fitness targets</li>
+                <li>Mix and match exercise styles</li>
+                <li>Monitor your transformation</li>
+                <li>Scale difficulty as you grow</li>
+            </ul>
+            <button class="cta-button" onclick="window.location.href='./makeOwnWorkout.html'">Design Workout →</button>
+        </div>
+
+        <!-- Pre-Made Workouts Section -->
+        <div class="workout-card premade-workouts loading click-effect">
+            <div class="workout-icon">⚡</div>
+            <h2>Professional Training Programs</h2>
+            <p>Access scientifically-designed workout blueprints created by fitness experts for maximum effectiveness.</p>
+            <ul class="features-list">
+                <li>Foundation Builder - 3 sessions/week</li>
+                <li>Metabolic Boost HIIT - 4 sessions/week</li>
+                <li>Power Building Split - 5 sessions/week</li>
+                <li>Athletic Performance Training</li>
+            </ul>
+            <button class="cta-button" onclick="window.location.href='./fixWorkouts.html'">Browse Programs →</button>
+        </div>
+
+        <!-- Exercise Info Section -->
+        <div class="workout-card exercise-info loading click-effect">
+            <div class="workout-icon">📚</div>
+            <h2>Movement Mastery Center</h2>
+            <p>Perfect your technique and expand your fitness knowledge with detailed exercise breakdowns and form tutorials.</p>
+            <div class="exercise-examples">
+                <div class="exercise-tag">Squats</div>
+                <div class="exercise-tag">Push-Ups</div>
+                <div class="exercise-tag">Planks</div>
+                <div class="exercise-tag">Deadlifts</div>
+                <div class="exercise-tag">Pull-Ups</div>
+                <div class="exercise-tag">Lunges</div>
+            </div>
+            <button class="cta-button" onclick="window.location.href='./infosAboutWorkouts.html'">Master Movements →</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-brand">
+                <span class="brand-icon">🌿</span>
+                <span class="brand-name">Healthy Living</span>
+            </div>
+            <p>Where health meets happiness</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Quiz</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="#">Recipes</a></li>
+                <li><a href="#">Workout Plans</a></li>
+                <li><a href="#">Health Tips</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <p>📧 healthy.living@gmail.com</p>
+            <p>📞 0677 61293245</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Healthy Living. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Login/Signup Modal -->
+<div class="modal" id="authModal">
+    <div class="modal-content" id="modalContent">
+        <span class="close-button" id="closeModal">&times;</span>
+
+        <div class="form-container sign-up-container">
+            <form id="signupForm">
+                <h1>Create Account</h1>
+                <span>Use your email for registration</span>
+                <input type="text" id="signupName" placeholder="Name" required />
+                <input type="email" id="signupEmail" placeholder="Email" required />
+                <input type="password" id="signupPassword" placeholder="Password" required />
+                <div class="error-message" id="signupError"></div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h1>Sign In</h1>
+                <span>Use your account</span>
+                <input type="email" id="loginEmail" placeholder="Email" required />
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <div class="error-message" id="loginError"></div>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="notification" id="notification"></div>
+</body>
+</html>
