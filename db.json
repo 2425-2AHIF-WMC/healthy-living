@@ -22,13 +22,13 @@
             }
           },
           "newestScore": {
-            "score": 8,
-            "percentage": 38,
+            "score": 4,
+            "percentage": 19,
             "maxScore": 21,
-            "date": "2025-06-08T22:14:03.388Z",
+            "date": "2025-06-09T16:39:18.671Z",
             "answers": {
-              "1": 2,
-              "2": 2,
+              "1": 0,
+              "2": 0,
               "3": 1,
               "4": 0,
               "5": 1,
@@ -107,13 +107,13 @@
       }
     },
     {
-      "id": 1749472383540,
+      "id": "1749472383540",
       "name": "Katzlberger Franziska",
       "email": "katzlbergerfranziska@gmail.com",
       "password": "myWebsiet"
     },
     {
-      "id": 1749472383540,
+      "id": "1749472383540",
       "name": "Katzlberger Franziska",
       "email": "katzlbergerfranziska@gmail.com",
       "password": "myWebsiet",

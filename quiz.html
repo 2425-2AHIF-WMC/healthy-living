@@ -9,8 +9,9 @@
 </head>
 <body>
 <!-- Navbar -->
+
 <nav class="navbar">
-    <a href="#" class="navbar-brand">My Website</a>
+    <a href="#" class="navbar-brand">Healthy Living</a>
     <div class="navbar-links">
         <a href="index.html">Home</a>
         <a href="shopping.html">Shop</a>
@@ -32,18 +33,43 @@
     </div>
 </nav>
 <br>
-<div class="quiz-buttons hero-buttons">
-    <button id="healthy-living-btn" class="btn-primary" onclick="showQuiz('healthy-living')">
+<div class="quiz-buttons hero-buttons"
+     style="width: 820px; margin: 0 auto; text-align: center;">
+
+    <button id="healthy-living-btn" class="btn-primary"
+            onclick="showQuiz('healthy-living')"
+            style="width: 190px; margin-right: 15px; padding: 12px 0; border: none;
+                 border-radius: 6px; font-size: 16px; cursor: pointer;
+                 color: white; outline: none; box-sizing: border-box; display: inline-block;">
         Healthy Living Quiz
     </button>
-    <button id="health-myths-btn" class="btn-primary" onclick="showQuiz('health-myths')">
-        Health Myths: True or False
+
+    <button id="health-myths-btn" class="btn-primary"
+            onclick="showQuiz('health-myths')"
+            style="width: 190px; margin-right: 15px; padding: 12px 0; border: none;
+                 border-radius: 6px; font-size: 16px; cursor: pointer;
+                  color: white; outline: none; box-sizing: border-box; display: inline-block;">
+        Health Myths
     </button>
-    <!-- WITH THIS LINE (remove the onclick attribute): -->
-    <button id="view-scores-btn" class="btn-primary" style="background: #6c757d;">
+
+    <button id="view-scores-btn" class="btn-primary"
+            style="width: 190px; margin-right: 15px; padding: 12px 0; border: none;
+                 border-radius: 6px; font-size: 16px; cursor: pointer;
+                 background-color: #6c757d; color: white; outline: none; box-sizing: border-box; display: inline-block;">
         View My Scores
     </button>
+
+    <button id="leaderboard-btn" class="btn-primary"
+            style="width: 190px; padding: 12px 0; border: none;
+                 border-radius: 6px; font-size: 16px; cursor: pointer;
+                 background-color: #8e44ad; color: white; outline: none; box-sizing: border-box; display: inline-block;">
+        View Leaderboard
+    </button>
+
 </div>
+
+
+
 <!-- Score Display Section -->
 <div id="scoreDisplay" style="display: none; text-align: center; background: white; margin: 1rem auto; padding: 1rem; border-radius: 10px; max-width: 600px;">
     <h3>Your Quiz History</h3>
@@ -210,6 +236,96 @@
         </button>
     </div>
 </div>
+
+
+<!-- Leaderboard Container -->
+<div id="leaderboard-display" style="display: none; text-align: center; background: white; margin: 1rem auto; padding: 1rem; border-radius: 10px; max-width: 800px;">
+    <h3>🏆 Leaderboard</h3>
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;">
+        <button id="healthy-living-leaderboard" class="btn-primary" style="background: #27ae60; font-size: 0.9em;">
+            Healthy Living Quiz
+        </button>
+        <button id="health-myths-leaderboard" class="btn-primary" style="background: #e74c3c; font-size: 0.9em;">
+            Health Myths Quiz
+        </button>
+    </div>
+    <div id="leaderboard-content">
+        <!-- Leaderboard content will be inserted here -->
+    </div>
+    <button class="back-btn" onclick="hideLeaderboard()" style="margin-top: 1rem;">
+        <span class="btn-text">Back to Overview</span>
+    </button>
+</div>
+
+<!-- Top Row Cards -->
+<div class="cards-row" style="margin-top: 120px; display: flex; gap: 25px; flex-wrap: wrap;">
+
+    <!-- Left Card - Why Healthy Quizzes are Important -->
+    <div class="card" style="margin-left: 60px;  flex: 1; min-width: 300px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 16px; padding: 30px; color: #333; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.2); transform: translateY(0); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05)); opacity: 0; transition: opacity 0.3s ease;"></div>
+        <div style="position: relative; z-index: 2;">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; color: white;">🧠</div>
+            <h3 style="font-size: 22px; margin-bottom: 15px; font-weight: 600; color: #2d3748;">Why Take Health Quizzes?</h3>
+            <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: #4a5568;">
+                Health quizzes are powerful tools for self-assessment and learning. They help you identify knowledge gaps, understand your current health status, and discover areas where you can improve your wellness journey. By taking evidence-based quizzes, you're investing in your health education and making informed decisions about your lifestyle choices.
+            </p>
+            <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #667eea;">
+                <p style="font-size: 13px; color: #4a5568; margin: 0; font-style: italic;">
+                    "Knowledge is the first step toward better health. Understanding your body and wellness needs empowers you to make choices that truly benefit your long-term wellbeing."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Card - Don't Believe Health Myths -->
+    <div class="card" style="margin-right: 60px;flex: 1; min-width: 300px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border-radius: 16px; padding: 30px; color: #333; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.2); transform: translateY(0); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(255, 107, 107, 0.05), rgba(255, 167, 38, 0.05)); opacity: 0; transition: opacity 0.3s ease;"></div>
+        <div style="position: relative; z-index: 2;">
+            <div style="background: linear-gradient(135deg, #ff6b6b, #ffa726); width: 55px; height: 55px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; color: white;">🚫</div>
+            <h3 style="font-size: 22px; margin-bottom: 15px; font-weight: 600; color: #2d3748;">Beware of Health Myths</h3>
+            <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: #4a5568;">
+                The internet is full of health misinformation that can be dangerous to your wellbeing. From miracle cures to outdated advice, these myths can lead to poor health decisions. Our myth-busting quizzes help you separate scientific facts from popular misconceptions, ensuring you have accurate information to guide your health choices.
+            </p>
+            <div style="background: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
+                <p style="font-size: 13px; color: #4a5568; margin: 0; font-style: italic;">
+                    "Question everything you read online. Verify health claims with scientific evidence and trusted sources before making any changes to your health routine."
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-brand">
+                <span class="brand-icon">🌿</span>
+                <span class="brand-name">My Website</span>
+            </div>
+            <p>Where health meets happiness</p>
+        </div>
+        <div class="footer-section" style="margin-left: 135px">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shopping.html">Shop</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="wourkouts/HTMLs/indexWorkouts.html">Workouts</a></li>
+                <li><a href="recipe.html">Recipe</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section" style="margin-left: 120px">
+            <h4>Contact Us</h4>
+            <p>📧 healthy.living@gmail.com</p>
+            <p>📞 0650 6851915 </p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Our Website. All rights reserved.</p>
+    </div>
+</footer>
+
 <div class="modal" id="authModal">
     <div class="modal-content" id="modalContentLogin">
         <span class="close-button" id="closeModal">&times;</span>
@@ -476,107 +592,107 @@
     });
 
     // Initialize quiz variables
-const answers = {};
-const totalQuestions = 7;
+    const answers = {};
+    const totalQuestions = 7;
 
-// Health Myths Quiz Variables
-const healthMythsQuestions = [
-    {
-        question: "Eating carbohydrates at night makes you gain more weight than eating them during the day.",
-        answer: "false",
-        explanation: "False. The time of day you eat carbohydrates doesn't directly affect weight gain. What matters is your total calorie intake versus calories burned throughout the entire day."
-    },
-    {
-        question: "You need to drink at least 8 glasses of water a day for optimal health.",
-        answer: "false",
-        explanation: "False. While staying hydrated is important, the '8 glasses rule' isn't scientifically proven. Water needs vary based on activity level, climate, health status, and diet."
-    },
-    {
-        question: "Eating smaller, more frequent meals boosts your metabolism significantly more than eating three regular meals.",
-        answer: "false",
-        explanation: "False. Research shows meal frequency has minimal impact on metabolic rate. What matters more is your total daily calorie intake."
-    },
-    {
-        question: "Regular exercise can help improve your mental health.",
-        answer: "true",
-        explanation: "True. Exercise releases endorphins and other neurotransmitters that can reduce symptoms of depression and anxiety."
-    },
-    {
-        question: "Using a standing desk burns significantly more calories than sitting.",
-        answer: "false",
-        explanation: "False. While standing does burn slightly more calories than sitting, the difference is minimal."
-    },
-    {
-        question: "Eating fat makes you fat.",
-        answer: "false",
-        explanation: "False. Dietary fat doesn't automatically become body fat. Weight gain occurs when you consume more calories than you burn."
-    },
-    {
-        question: "Muscle turns into fat when you stop exercising.",
-        answer: "false",
-        explanation: "False. Muscle and fat are completely different tissues and cannot transform into one another."
-    },
-    {
-        question: "Exposure to sunlight helps your body produce vitamin D.",
-        answer: "true",
-        explanation: "True. When UVB rays from sunlight hit your skin, they trigger vitamin D synthesis."
-    },
-    {
-        question: "Cracking your knuckles causes arthritis.",
-        answer: "false",
-        explanation: "False. Multiple studies have found no connection between knuckle cracking and arthritis."
-    },
-    {
-        question: "Most of your body heat escapes through your head.",
-        answer: "false",
-        explanation: "False. This myth originated from flawed military experiments."
+    // Health Myths Quiz Variables
+    const healthMythsQuestions = [
+        {
+            question: "Eating carbohydrates at night makes you gain more weight than eating them during the day.",
+            answer: "false",
+            explanation: "False. The time of day you eat carbohydrates doesn't directly affect weight gain. What matters is your total calorie intake versus calories burned throughout the entire day."
+        },
+        {
+            question: "You need to drink at least 8 glasses of water a day for optimal health.",
+            answer: "false",
+            explanation: "False. While staying hydrated is important, the '8 glasses rule' isn't scientifically proven. Water needs vary based on activity level, climate, health status, and diet."
+        },
+        {
+            question: "Eating smaller, more frequent meals boosts your metabolism significantly more than eating three regular meals.",
+            answer: "false",
+            explanation: "False. Research shows meal frequency has minimal impact on metabolic rate. What matters more is your total daily calorie intake."
+        },
+        {
+            question: "Regular exercise can help improve your mental health.",
+            answer: "true",
+            explanation: "True. Exercise releases endorphins and other neurotransmitters that can reduce symptoms of depression and anxiety."
+        },
+        {
+            question: "Using a standing desk burns significantly more calories than sitting.",
+            answer: "false",
+            explanation: "False. While standing does burn slightly more calories than sitting, the difference is minimal."
+        },
+        {
+            question: "Eating fat makes you fat.",
+            answer: "false",
+            explanation: "False. Dietary fat doesn't automatically become body fat. Weight gain occurs when you consume more calories than you burn."
+        },
+        {
+            question: "Muscle turns into fat when you stop exercising.",
+            answer: "false",
+            explanation: "False. Muscle and fat are completely different tissues and cannot transform into one another."
+        },
+        {
+            question: "Exposure to sunlight helps your body produce vitamin D.",
+            answer: "true",
+            explanation: "True. When UVB rays from sunlight hit your skin, they trigger vitamin D synthesis."
+        },
+        {
+            question: "Cracking your knuckles causes arthritis.",
+            answer: "false",
+            explanation: "False. Multiple studies have found no connection between knuckle cracking and arthritis."
+        },
+        {
+            question: "Most of your body heat escapes through your head.",
+            answer: "false",
+            explanation: "False. This myth originated from flawed military experiments."
+        }
+    ];
+
+    let currentMythQuestion = 0;
+    let mythsScore = 0;
+    let selectedMythAnswer = null;
+
+
+
+    // Show Quiz Function
+    function showQuiz(quizId) {
+        const quizButtons = document.querySelector('.quiz-buttons');
+        if (quizButtons) {
+            quizButtons.style.display = 'none';
+        }
+        const quizElement = document.getElementById(`${quizId}-quiz`);
+        if (quizElement) {
+            quizElement.style.display = 'block';
+        }
     }
-];
-
-let currentMythQuestion = 0;
-let mythsScore = 0;
-let selectedMythAnswer = null;
 
 
+    async function createUserInDatabase(userData) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/users`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            });
 
-// Show Quiz Function
-function showQuiz(quizId) {
-    const quizButtons = document.querySelector('.quiz-buttons');
-    if (quizButtons) {
-        quizButtons.style.display = 'none';
-    }
-    const quizElement = document.getElementById(`${quizId}-quiz`);
-    if (quizElement) {
-        quizElement.style.display = 'block';
-    }
-}
-
-
-async function createUserInDatabase(userData) {
-    try {
-        const response = await fetch(`${API_BASE_URL}/users`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData)
-        });
-
-        if (response.ok) {
-            const createdUser = await response.json();
-            saveUserSession(createdUser);
-            console.log('User created successfully:', createdUser);
-            return true;
-        } else {
-            console.error('Failed to create user:', response.statusText);
+            if (response.ok) {
+                const createdUser = await response.json();
+                saveUserSession(createdUser);
+                console.log('User created successfully:', createdUser);
+                return true;
+            } else {
+                console.error('Failed to create user:', response.statusText);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error creating user:', error);
             return false;
         }
-    } catch (error) {
-        console.error('Error creating user:', error);
-        return false;
     }
-}
-// Add this function for guest users (no login)
+    // Add this function for guest users (no login)
     function saveGuestQuizResult(quizType, score, maxScore, answers = null) {
         try {
             // Ensure maxScore has a default value if undefined
@@ -699,340 +815,340 @@ async function createUserInDatabase(userData) {
     }
 
 
-function loadUserWithFallback(userId) {
-    // First try to get from sessionStorage
-    let userData = loadUserSession();
-    if (userData && userData.id === userId) {
-        return userData;
-    }
-
-    // Try localStorage backup
-    try {
-        const backupData = localStorage.getItem('userBackup_' + userId);
-        if (backupData) {
-            userData = JSON.parse(backupData);
-            console.log('Loaded user data from localStorage backup');
+    function loadUserWithFallback(userId) {
+        // First try to get from sessionStorage
+        let userData = loadUserSession();
+        if (userData && userData.id === userId) {
             return userData;
         }
-    } catch (error) {
-        console.error('Error loading from localStorage:', error);
-    }
 
-    return null;
-}
-
-async function saveUserData(userData) {
-    try {
-        // First, check if user exists
-        const checkResponse = await fetch(`${API_BASE_URL}/users/${userData.id}`);
-
-        if (!checkResponse.ok) {
-            console.error(`User with ID ${userData.id} not found in database`);
-            // Try to create the user instead
-            return await createUserInDatabase(userData);
+        // Try localStorage backup
+        try {
+            const backupData = localStorage.getItem('userBackup_' + userId);
+            if (backupData) {
+                userData = JSON.parse(backupData);
+                console.log('Loaded user data from localStorage backup');
+                return userData;
+            }
+        } catch (error) {
+            console.error('Error loading from localStorage:', error);
         }
 
-        // User exists, update it
-        const response = await fetch(`${API_BASE_URL}/users/${userData.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData)
-        });
+        return null;
+    }
 
-        if (response.ok) {
-            const updatedUser = await response.json();
-            saveUserSession(updatedUser);
-            console.log('User data saved successfully:', updatedUser);
-            return true;
-        } else {
-            console.error('Failed to save user data:', response.statusText);
+    async function saveUserData(userData) {
+        try {
+            // First, check if user exists
+            const checkResponse = await fetch(`${API_BASE_URL}/users/${userData.id}`);
+
+            if (!checkResponse.ok) {
+                console.error(`User with ID ${userData.id} not found in database`);
+                // Try to create the user instead
+                return await createUserInDatabase(userData);
+            }
+
+            // User exists, update it
+            const response = await fetch(`${API_BASE_URL}/users/${userData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                const updatedUser = await response.json();
+                saveUserSession(updatedUser);
+                console.log('User data saved successfully:', updatedUser);
+                return true;
+            } else {
+                console.error('Failed to save user data:', response.statusText);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error saving user data:', error);
             return false;
         }
-    } catch (error) {
-        console.error('Error saving user data:', error);
-        return false;
     }
-}
-// Calculate Results Function
-async function calculateResults() {
-    try {
-        console.log('Calculating results with answers:', answers);
+    // Calculate Results Function
+    async function calculateResults() {
+        try {
+            console.log('Calculating results with answers:', answers);
 
-        // Calculate the score
-        let score = 0;
-        let maxPossibleScore = totalQuestions * 3; // Each question has max value of 3
+            // Calculate the score
+            let score = 0;
+            let maxPossibleScore = totalQuestions * 3; // Each question has max value of 3
 
-        for (const value of Object.values(answers)) {
-            score += value;
+            for (const value of Object.values(answers)) {
+                score += value;
+            }
+
+            const percentage = Math.round((score / maxPossibleScore) * 100);
+            console.log(`Score: ${score}/${maxPossibleScore} (${percentage}%)`);
+
+            // Save quiz result to user database
+            const saved = await saveQuizResult('healthy-living', score, maxPossibleScore, { ...answers });
+            console.log('Quiz result saved:', saved);
+
+            // Show result
+            const livingQuiz = document.getElementById('living-quiz');
+            const livingResult = document.getElementById('living-result');
+            if (livingQuiz) livingQuiz.style.display = 'none';
+            if (livingResult) livingResult.style.display = 'block';
+
+            // Update score bar
+            const scoreFill = document.getElementById('living-score-fill');
+            const scoreLabel = document.getElementById('living-score-label');
+            if (scoreFill) scoreFill.style.width = `${percentage}%`;
+            if (scoreLabel) scoreLabel.textContent = `${percentage}%`;
+
+            // Determine result text
+            let resultText = '';
+            let recommendations = '';
+
+            if (percentage >= 85) {
+                resultText = "Excellent! You're maintaining a very healthy lifestyle. Keep up the great work!";
+                recommendations = "To improve even further, consider adding variety to your exercise routine.";
+            } else if (percentage >= 70) {
+                resultText = "Good job! You're making healthy choices in most areas of your life.";
+                recommendations = "Focus on improving your sleep quality and managing stress.";
+            } else if (percentage >= 50) {
+                resultText = "You're on the right track with some healthy habits, but there's room for improvement.";
+                recommendations = "Try adding more physical activity and increasing your fruit and vegetable intake.";
+            } else {
+                resultText = "Your current lifestyle may be impacting your health. Making small changes can lead to big improvements.";
+                recommendations = "Start with one small change like drinking more water or taking short walks.";
+            }
+
+            const resultTextElement = document.getElementById('living-result-text');
+            const recommendationsElement = document.getElementById('living-recommendations');
+            if (resultTextElement) resultTextElement.textContent = resultText;
+            if (recommendationsElement) recommendationsElement.innerHTML = `<strong>Recommendations:</strong> ${recommendations}`;
+
+        } catch (error) {
+            console.error('Error in calculateResults:', error);
+            alert('There was an error calculating your results. Please try again.');
+        }
+    }
+
+    // Restart Living Quiz Function
+    function restartLivingQuiz() {
+        // Reset answers
+        for (let i = 1; i <= totalQuestions; i++) {
+            delete answers[i];
+
+            // Remove selected class from all options
+            const options = document.querySelectorAll(`#question-${i} .option`);
+            options.forEach(option => option.classList.remove('selected'));
         }
 
-        const percentage = Math.round((score / maxPossibleScore) * 100);
-        console.log(`Score: ${score}/${maxPossibleScore} (${percentage}%)`);
+        // Disable submit button
+        const submitBtn = document.getElementById('submit-btn');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+        }
 
-        // Save quiz result to user database
-        const saved = await saveQuizResult('healthy-living', score, maxPossibleScore, { ...answers });
-        console.log('Quiz result saved:', saved);
-
-        // Show result
+        // Show quiz and hide result
         const livingQuiz = document.getElementById('living-quiz');
         const livingResult = document.getElementById('living-result');
-        if (livingQuiz) livingQuiz.style.display = 'none';
-        if (livingResult) livingResult.style.display = 'block';
-
-        // Update score bar
-        const scoreFill = document.getElementById('living-score-fill');
-        const scoreLabel = document.getElementById('living-score-label');
-        if (scoreFill) scoreFill.style.width = `${percentage}%`;
-        if (scoreLabel) scoreLabel.textContent = `${percentage}%`;
-
-        // Determine result text
-        let resultText = '';
-        let recommendations = '';
-
-        if (percentage >= 85) {
-            resultText = "Excellent! You're maintaining a very healthy lifestyle. Keep up the great work!";
-            recommendations = "To improve even further, consider adding variety to your exercise routine.";
-        } else if (percentage >= 70) {
-            resultText = "Good job! You're making healthy choices in most areas of your life.";
-            recommendations = "Focus on improving your sleep quality and managing stress.";
-        } else if (percentage >= 50) {
-            resultText = "You're on the right track with some healthy habits, but there's room for improvement.";
-            recommendations = "Try adding more physical activity and increasing your fruit and vegetable intake.";
-        } else {
-            resultText = "Your current lifestyle may be impacting your health. Making small changes can lead to big improvements.";
-            recommendations = "Start with one small change like drinking more water or taking short walks.";
-        }
-
-        const resultTextElement = document.getElementById('living-result-text');
-        const recommendationsElement = document.getElementById('living-recommendations');
-        if (resultTextElement) resultTextElement.textContent = resultText;
-        if (recommendationsElement) recommendationsElement.innerHTML = `<strong>Recommendations:</strong> ${recommendations}`;
-
-    } catch (error) {
-        console.error('Error in calculateResults:', error);
-        alert('There was an error calculating your results. Please try again.');
-    }
-}
-
-// Restart Living Quiz Function
-function restartLivingQuiz() {
-    // Reset answers
-    for (let i = 1; i <= totalQuestions; i++) {
-        delete answers[i];
-
-        // Remove selected class from all options
-        const options = document.querySelectorAll(`#question-${i} .option`);
-        options.forEach(option => option.classList.remove('selected'));
+        if (livingQuiz) livingQuiz.style.display = 'block';
+        if (livingResult) livingResult.style.display = 'none';
     }
 
-    // Disable submit button
-    const submitBtn = document.getElementById('submit-btn');
-    if (submitBtn) {
-        submitBtn.disabled = true;
-    }
-
-    // Show quiz and hide result
-    const livingQuiz = document.getElementById('living-quiz');
-    const livingResult = document.getElementById('living-result');
-    if (livingQuiz) livingQuiz.style.display = 'block';
-    if (livingResult) livingResult.style.display = 'none';
-}
-
-// Health Myths Quiz Functions
-function startMythsQuiz() {
-    const introScreen = document.getElementById('myths-intro-screen');
-    const mythsQuiz = document.getElementById('myths-quiz');
-
-    if (introScreen) introScreen.style.display = 'none';
-    if (mythsQuiz) mythsQuiz.style.display = 'block';
-
-    // Reset quiz state
-    currentMythQuestion = 0;
-    mythsScore = 0;
-    selectedMythAnswer = null;
-
-    displayMythQuestion();
-}
-
-function displayMythQuestion() {
-    const questionData = healthMythsQuestions[currentMythQuestion];
-    const questionContainer = document.getElementById('myths-question-container');
-
-    if (questionContainer) {
-        questionContainer.innerHTML = `
-            <div class="question">${questionData.question}</div>
-        `;
-    }
-
-    // Reset buttons
-    const trueBtn = document.getElementById('true-btn');
-    const falseBtn = document.getElementById('false-btn');
-    const nextBtn = document.getElementById('next-btn');
-
-    if (trueBtn) trueBtn.classList.remove('selected-true');
-    if (falseBtn) falseBtn.classList.remove('selected-false');
-    if (nextBtn) {
-        nextBtn.disabled = true;
-        nextBtn.textContent = 'Check Answer';
-        nextBtn.onclick = checkMythAnswer;
-    }
-
-    // Update progress
-    const progressPercent = ((currentMythQuestion + 1) / healthMythsQuestions.length) * 100;
-    const progressFill = document.getElementById('myths-progress-fill');
-    const progressText = document.getElementById('myths-progress-text');
-
-    if (progressFill) progressFill.style.width = `${progressPercent}%`;
-    if (progressText) progressText.textContent = `Question ${currentMythQuestion + 1} of ${healthMythsQuestions.length}`;
-
-    selectedMythAnswer = null;
-}
-
-function selectMythAnswer(answer) {
-    selectedMythAnswer = answer;
-
-    // Highlight selected button
-    const trueBtn = document.getElementById('true-btn');
-    const falseBtn = document.getElementById('false-btn');
-    const nextBtn = document.getElementById('next-btn');
-
-    if (trueBtn) trueBtn.classList.remove('selected-true');
-    if (falseBtn) falseBtn.classList.remove('selected-false');
-
-    if (answer === 'true' && trueBtn) {
-        trueBtn.classList.add('selected-true');
-    } else if (answer === 'false' && falseBtn) {
-        falseBtn.classList.add('selected-false');
-    }
-
-    // Enable next button
-    if (nextBtn) {
-        nextBtn.disabled = false;
-    }
-}
-
-function checkMythAnswer() {
-    showMythExplanation();
-}
-
-function showMythExplanation() {
-    const questionData = healthMythsQuestions[currentMythQuestion];
-    const isCorrect = selectedMythAnswer === questionData.answer;
-
-    const mythsQuiz = document.getElementById('myths-quiz');
-    const mythsExplanation = document.getElementById('myths-explanation');
-
-    if (mythsQuiz) mythsQuiz.style.display = 'none';
-    if (mythsExplanation) mythsExplanation.style.display = 'block';
-
-    // Update explanation content
-    const correctAnswer = document.getElementById('myths-correct-answer');
-    const explanationText = document.getElementById('myths-explanation-text');
-
-    if (correctAnswer) {
-        correctAnswer.textContent = isCorrect ? "Correct!" : "Incorrect!";
-    }
-    if (explanationText) {
-        explanationText.textContent = questionData.explanation;
-    }
-
-    // Update score if answer is correct
-    if (isCorrect) {
-        mythsScore++;
-    }
-}
-
-function continueMythsQuiz() {
-    currentMythQuestion++;
-
-    // Check if we've completed all questions
-    if (currentMythQuestion >= healthMythsQuestions.length) {
-        showMythsResults();
-    } else {
-        const mythsExplanation = document.getElementById('myths-explanation');
+    // Health Myths Quiz Functions
+    function startMythsQuiz() {
+        const introScreen = document.getElementById('myths-intro-screen');
         const mythsQuiz = document.getElementById('myths-quiz');
 
-        if (mythsExplanation) mythsExplanation.style.display = 'none';
+        if (introScreen) introScreen.style.display = 'none';
         if (mythsQuiz) mythsQuiz.style.display = 'block';
+
+        // Reset quiz state
+        currentMythQuestion = 0;
+        mythsScore = 0;
+        selectedMythAnswer = null;
 
         displayMythQuestion();
     }
-}
 
-async function showMythsResults() {
-    document.getElementById('myths-explanation').style.display = 'none';
-    document.getElementById('myths-result').style.display = 'block';
+    function displayMythQuestion() {
+        const questionData = healthMythsQuestions[currentMythQuestion];
+        const questionContainer = document.getElementById('myths-question-container');
 
-    // Calculate percentage
-    const percentage = Math.round((mythsScore / healthMythsQuestions.length) * 100);
+        if (questionContainer) {
+            questionContainer.innerHTML = `
+            <div class="question">${questionData.question}</div>
+        `;
+        }
 
-    // Save quiz result to user database
-    const saved = await saveQuizResult('health-myths', mythsScore, healthMythsQuestions.length, null);
+        // Reset buttons
+        const trueBtn = document.getElementById('true-btn');
+        const falseBtn = document.getElementById('false-btn');
+        const nextBtn = document.getElementById('next-btn');
 
-    // Update score display
-    document.getElementById('myths-score').textContent = mythsScore;
-    document.getElementById('myths-total-questions').textContent = healthMythsQuestions.length;
-    document.getElementById('myths-score-fill').style.width = `${percentage}%`;
-    document.getElementById('myths-score-label').textContent = `${percentage}%`;
+        if (trueBtn) trueBtn.classList.remove('selected-true');
+        if (falseBtn) falseBtn.classList.remove('selected-false');
+        if (nextBtn) {
+            nextBtn.disabled = true;
+            nextBtn.textContent = 'Check Answer';
+            nextBtn.onclick = checkMythAnswer;
+        }
 
-    // Set result text based on score
-    let resultText = '';
-    let recommendations = '';
+        // Update progress
+        const progressPercent = ((currentMythQuestion + 1) / healthMythsQuestions.length) * 100;
+        const progressFill = document.getElementById('myths-progress-fill');
+        const progressText = document.getElementById('myths-progress-text');
 
-    if (percentage >= 80) {
-        resultText = "Excellent! You have a great understanding of health facts versus myths.";
-        recommendations = "Keep staying informed by reading reputable health sources.";
-    } else if (percentage >= 60) {
-        resultText = "Good job! You know many health facts, but there are still some common misconceptions.";
-        recommendations = "Consider following evidence-based health websites to improve your knowledge.";
-    } else {
-        resultText = "You've been influenced by some common health myths. Don't worry - many of these are widespread!";
-        recommendations = "Try to verify health claims from multiple reputable sources before believing them.";
+        if (progressFill) progressFill.style.width = `${progressPercent}%`;
+        if (progressText) progressText.textContent = `Question ${currentMythQuestion + 1} of ${healthMythsQuestions.length}`;
+
+        selectedMythAnswer = null;
     }
 
-    document.getElementById('myths-result-text').textContent = resultText;
-    document.getElementById('myths-recommendations').innerHTML = `<strong>Recommendations:</strong> ${recommendations}`;
+    function selectMythAnswer(answer) {
+        selectedMythAnswer = answer;
 
-    // Add score comparison section
-    displayScoreComparison('myths', saved);
-}
+        // Highlight selected button
+        const trueBtn = document.getElementById('true-btn');
+        const falseBtn = document.getElementById('false-btn');
+        const nextBtn = document.getElementById('next-btn');
 
-function selectOption(element, questionNumber) {
-    // Remove selected class from all options in this question
-    const questionElement = document.getElementById(`question-${questionNumber}`);
-    const allOptions = questionElement.querySelectorAll('.option');
-    allOptions.forEach(option => option.classList.remove('selected'));
+        if (trueBtn) trueBtn.classList.remove('selected-true');
+        if (falseBtn) falseBtn.classList.remove('selected-false');
 
-    // Add selected class to clicked option
-    element.classList.add('selected');
+        if (answer === 'true' && trueBtn) {
+            trueBtn.classList.add('selected-true');
+        } else if (answer === 'false' && falseBtn) {
+            falseBtn.classList.add('selected-false');
+        }
 
-    // Store the answer value
-    const value = parseInt(element.getAttribute('data-value'));
-    answers[questionNumber] = value;
-
-    console.log(`Question ${questionNumber} answered with value: ${value}`);
-    console.log('Current answers:', answers);
-
-    // Check if all questions are answered
-    checkAllQuestionsAnswered();
-}
-
-function checkAllQuestionsAnswered() {
-    const answeredQuestions = Object.keys(answers).length;
-    const submitBtn = document.getElementById('submit-btn');
-
-    if (answeredQuestions === totalQuestions) {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        submitBtn.style.cursor = 'pointer';
-    } else {
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.5';
-        submitBtn.style.cursor = 'not-allowed';
+        // Enable next button
+        if (nextBtn) {
+            nextBtn.disabled = false;
+        }
     }
-}
+
+    function checkMythAnswer() {
+        showMythExplanation();
+    }
+
+    function showMythExplanation() {
+        const questionData = healthMythsQuestions[currentMythQuestion];
+        const isCorrect = selectedMythAnswer === questionData.answer;
+
+        const mythsQuiz = document.getElementById('myths-quiz');
+        const mythsExplanation = document.getElementById('myths-explanation');
+
+        if (mythsQuiz) mythsQuiz.style.display = 'none';
+        if (mythsExplanation) mythsExplanation.style.display = 'block';
+
+        // Update explanation content
+        const correctAnswer = document.getElementById('myths-correct-answer');
+        const explanationText = document.getElementById('myths-explanation-text');
+
+        if (correctAnswer) {
+            correctAnswer.textContent = isCorrect ? "Correct!" : "Incorrect!";
+        }
+        if (explanationText) {
+            explanationText.textContent = questionData.explanation;
+        }
+
+        // Update score if answer is correct
+        if (isCorrect) {
+            mythsScore++;
+        }
+    }
+
+    function continueMythsQuiz() {
+        currentMythQuestion++;
+
+        // Check if we've completed all questions
+        if (currentMythQuestion >= healthMythsQuestions.length) {
+            showMythsResults();
+        } else {
+            const mythsExplanation = document.getElementById('myths-explanation');
+            const mythsQuiz = document.getElementById('myths-quiz');
+
+            if (mythsExplanation) mythsExplanation.style.display = 'none';
+            if (mythsQuiz) mythsQuiz.style.display = 'block';
+
+            displayMythQuestion();
+        }
+    }
+
+    async function showMythsResults() {
+        document.getElementById('myths-explanation').style.display = 'none';
+        document.getElementById('myths-result').style.display = 'block';
+
+        // Calculate percentage
+        const percentage = Math.round((mythsScore / healthMythsQuestions.length) * 100);
+
+        // Save quiz result to user database
+        const saved = await saveQuizResult('health-myths', mythsScore, healthMythsQuestions.length, null);
+
+        // Update score display
+        document.getElementById('myths-score').textContent = mythsScore;
+        document.getElementById('myths-total-questions').textContent = healthMythsQuestions.length;
+        document.getElementById('myths-score-fill').style.width = `${percentage}%`;
+        document.getElementById('myths-score-label').textContent = `${percentage}%`;
+
+        // Set result text based on score
+        let resultText = '';
+        let recommendations = '';
+
+        if (percentage >= 80) {
+            resultText = "Excellent! You have a great understanding of health facts versus myths.";
+            recommendations = "Keep staying informed by reading reputable health sources.";
+        } else if (percentage >= 60) {
+            resultText = "Good job! You know many health facts, but there are still some common misconceptions.";
+            recommendations = "Consider following evidence-based health websites to improve your knowledge.";
+        } else {
+            resultText = "You've been influenced by some common health myths. Don't worry - many of these are widespread!";
+            recommendations = "Try to verify health claims from multiple reputable sources before believing them.";
+        }
+
+        document.getElementById('myths-result-text').textContent = resultText;
+        document.getElementById('myths-recommendations').innerHTML = `<strong>Recommendations:</strong> ${recommendations}`;
+
+        // Add score comparison section
+        displayScoreComparison('myths', saved);
+    }
+
+    function selectOption(element, questionNumber) {
+        // Remove selected class from all options in this question
+        const questionElement = document.getElementById(`question-${questionNumber}`);
+        const allOptions = questionElement.querySelectorAll('.option');
+        allOptions.forEach(option => option.classList.remove('selected'));
+
+        // Add selected class to clicked option
+        element.classList.add('selected');
+
+        // Store the answer value
+        const value = parseInt(element.getAttribute('data-value'));
+        answers[questionNumber] = value;
+
+        console.log(`Question ${questionNumber} answered with value: ${value}`);
+        console.log('Current answers:', answers);
+
+        // Check if all questions are answered
+        checkAllQuestionsAnswered();
+    }
+
+    function checkAllQuestionsAnswered() {
+        const answeredQuestions = Object.keys(answers).length;
+        const submitBtn = document.getElementById('submit-btn');
+
+        if (answeredQuestions === totalQuestions) {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+            submitBtn.style.cursor = 'pointer';
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
+        }
+    }
 
 
     function toggleScoreDisplay() {
@@ -1156,7 +1272,7 @@ function checkAllQuestionsAnswered() {
             console.error('View scores button not found!');
         }
     });
-// Function to display user scores
+    // Function to display user scores
     function displayUserScores() {
         const currentUser = getCurrentUser();
         const scoreCards = document.getElementById('scoreCards');
@@ -1253,44 +1369,47 @@ function checkAllQuestionsAnswered() {
     }
 
 
-// Missing function: hideQuiz
-function hideQuiz(quizId) {
-    const quizElement = document.getElementById(`${quizId}-quiz`);
-    const quizButtons = document.querySelector('.quiz-buttons');
+    // Missing function: hideQuiz
+    function hideQuiz(quizId) {
+        const quizElement = document.getElementById(`${quizId}-quiz`);
+        const quizButtons = document.querySelector('.quiz-buttons');
 
-    if (quizElement) {
-        quizElement.style.display = 'none';
-    }
-    if (quizButtons) {
-        quizButtons.style.display = 'block';
-    }
-}
-
-// Missing function: backToQuizButtons
-function backToQuizButtons() {
-    // Hide all quiz containers
-    const healthyLivingQuiz = document.getElementById('healthy-living-quiz');
-    const healthMythsQuiz = document.getElementById('health-myths-quiz');
-    const quizButtons = document.querySelector('.quiz-buttons');
-    const scoreDisplay = document.getElementById('scoreDisplay');
-
-    if (healthyLivingQuiz) healthyLivingQuiz.style.display = 'none';
-    if (healthMythsQuiz) healthMythsQuiz.style.display = 'none';
-    if (quizButtons) quizButtons.style.display = 'block';
-
-    // Hide score display and reset button text
-    if (scoreDisplay) {
-        scoreDisplay.style.display = 'none';
-        const viewScoresBtn = document.getElementById('view-scores-btn');
-        if (viewScoresBtn) viewScoresBtn.textContent = 'View My Scores';
+        if (quizElement) {
+            quizElement.style.display = 'none';
+        }
+        if (quizButtons) {
+            quizButtons.style.display = 'block';
+        }
     }
 
-    // Remove guest warning if it exists
-    const existingWarning = document.getElementById('guestWarning');
-    if (existingWarning) {
-        existingWarning.remove();
+    // Missing function: backToQuizButtons
+    function backToQuizButtons() {
+        // Hide all quiz containers
+        const healthyLivingQuiz = document.getElementById('healthy-living-quiz');
+        const healthMythsQuiz = document.getElementById('health-myths-quiz');
+        const quizButtons = document.querySelector('.quiz-buttons');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const leaderboardDisplay = document.getElementById('leaderboard-display'); // Add this line
+
+        if (healthyLivingQuiz) healthyLivingQuiz.style.display = 'none';
+        if (healthMythsQuiz) healthMythsQuiz.style.display = 'none';
+        if (leaderboardDisplay) leaderboardDisplay.style.display = 'none'; // Add this line
+        if (quizButtons) quizButtons.style.display = 'block';
+
+        // Hide score display and reset button text
+        if (scoreDisplay) {
+            scoreDisplay.style.display = 'none';
+            scoreDisplay.setAttribute('data-visible', 'false'); // Add this line
+            const viewScoresBtn = document.getElementById('view-scores-btn');
+            if (viewScoresBtn) viewScoresBtn.textContent = 'View My Scores';
+        }
+
+        // Remove guest warning if it exists
+        const existingWarning = document.getElementById('guestWarning');
+        if (existingWarning) {
+            existingWarning.remove();
+        }
     }
-}
     function displayScoreComparison(quizType, saved) {
         const currentUser = getCurrentUser();
         let comparisonHTML = '';
@@ -1357,49 +1476,205 @@ function backToQuizButtons() {
         }
     }
 
-function restartMythsQuiz() {
-    // Reset variables
-    currentMythQuestion = 0;
-    mythsScore = 0;
-    selectedMythAnswer = null;
+    function restartMythsQuiz() {
+        // Reset variables
+        currentMythQuestion = 0;
+        mythsScore = 0;
+        selectedMythAnswer = null;
 
-    // Reset display
-    document.getElementById('myths-result').style.display = 'none';
-    document.getElementById('myths-intro-screen').style.display = 'block';
-}
-// Updated getCurrentUser to use fallback
-function getCurrentUser() {
-    const userData = sessionStorage.getItem('currentUser');
-    if (userData) {
-        const user = JSON.parse(userData);
-        // Try to load any additional data from localStorage backup
-        const backupData = loadUserWithFallback(user.id);
-        return backupData || user;
+        // Reset display
+        document.getElementById('myths-result').style.display = 'none';
+        document.getElementById('myths-intro-screen').style.display = 'block';
     }
-    return null;
-}
-// Event Listeners for Quiz Buttons
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize authentication
-    initializeAuth();
-
-    // Add event listeners for quiz buttons
-    const healthyLivingBtn = document.getElementById('healthy-living-btn');
-    const healthMythsBtn = document.getElementById('health-myths-btn');
-    const viewScoresBtn = document.getElementById('view-scores-btn');
-
-    if (healthyLivingBtn) {
-        healthyLivingBtn.addEventListener('click', () => showQuiz('healthy-living'));
+    // Updated getCurrentUser to use fallback
+    function getCurrentUser() {
+        const userData = sessionStorage.getItem('currentUser');
+        if (userData) {
+            const user = JSON.parse(userData);
+            // Try to load any additional data from localStorage backup
+            const backupData = loadUserWithFallback(user.id);
+            return backupData || user;
+        }
+        return null;
     }
 
-    if (healthMythsBtn) {
-        healthMythsBtn.addEventListener('click', () => showQuiz('health-myths'));
+
+
+
+    // Show/Hide Leaderboard Functions
+    function showLeaderboard() {
+        const quizButtons = document.querySelector('.quiz-buttons');
+        const leaderboardDisplay = document.getElementById('leaderboard-display');
+
+        if (quizButtons) quizButtons.style.display = 'none';
+        if (leaderboardDisplay) leaderboardDisplay.style.display = 'block';
+
+        // Show healthy living leaderboard by default
+        displayLeaderboard('healthy-living');
     }
 
-    if (viewScoresBtn) {
-        viewScoresBtn.addEventListener('click', toggleScoreDisplay);
+    function hideLeaderboard() {
+        const quizButtons = document.querySelector('.quiz-buttons');
+        const leaderboardDisplay = document.getElementById('leaderboard-display');
+
+        if (quizButtons) quizButtons.style.display = 'block';
+        if (leaderboardDisplay) leaderboardDisplay.style.display = 'none';
     }
-});
+
+    // Fetch and Display Leaderboard
+    async function displayLeaderboard(quizType) {
+        const leaderboardContent = document.getElementById('leaderboard-content');
+        const quizName = quizType === 'healthy-living' ? 'Healthy Living Quiz' : 'Health Myths Quiz';
+        const maxScore = quizType === 'healthy-living' ? 21 : 10;
+
+        // Update button styles
+        const healthyBtn = document.getElementById('healthy-living-leaderboard');
+        const mythsBtn = document.getElementById('health-myths-leaderboard');
+
+        if (quizType === 'healthy-living') {
+            healthyBtn.style.background = '#27ae60';
+            mythsBtn.style.background = '#95a5a6';
+        } else {
+            healthyBtn.style.background = '#95a5a6';
+            mythsBtn.style.background = '#e74c3c';
+        }
+
+        try {
+            // Fetch all users from the API
+            const response = await fetch('http://localhost:3000/users');
+            const users = await response.json();
+
+            // Extract and sort scores for the selected quiz type
+            const scores = [];
+
+            users.forEach(user => {
+                if (user.quizResults && user.quizResults[quizType] && user.quizResults[quizType].bestScore) {
+                    const bestScore = user.quizResults[quizType].bestScore;
+                    scores.push({
+                        name: user.name,
+                        score: bestScore.score,
+                        percentage: bestScore.percentage,
+                        maxScore: bestScore.maxScore || maxScore,
+                        date: new Date(bestScore.date)
+                    });
+                }
+            });
+
+            // Sort by percentage (descending), then by date (most recent first)
+            scores.sort((a, b) => {
+                if (b.percentage !== a.percentage) {
+                    return b.percentage - a.percentage;
+                }
+                return b.date - a.date;
+            });
+
+            // Generate leaderboard HTML
+            let leaderboardHTML = `<h4>${quizName} - Top Scores</h4>`;
+
+            if (scores.length === 0) {
+                leaderboardHTML += `
+                <div style="padding: 2rem; color: #666;">
+                    <p>No scores yet for this quiz. Be the first to take it!</p>
+                </div>
+            `;
+            } else {
+                leaderboardHTML += `
+                <div style="background: #f8f9fa; border-radius: 10px; overflow: hidden; margin-top: 1rem;">
+                    <div style="display: grid; grid-template-columns: 60px 1fr 100px 100px; gap: 1rem; padding: 1rem; background: #2c7873; color: white; font-weight: bold;">
+                        <div>Rank</div>
+                        <div>Name</div>
+                        <div>Score</div>
+                        <div>Percentage</div>
+                    </div>
+            `;
+
+                scores.slice(0, 10).forEach((score, index) => {
+                    const rank = index + 1;
+                    const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : '';
+                    const rowColor = rank <= 3 ? '#fff3cd' : 'white';
+
+                    leaderboardHTML += `
+                    <div style="display: grid; grid-template-columns: 60px 1fr 100px 100px; gap: 1rem; padding: 1rem; background: ${rowColor}; border-bottom: 1px solid #dee2e6;">
+                        <div style="font-weight: bold; color: #2c7873;">${medal} #${rank}</div>
+                        <div style="text-align: left;">${score.name}</div>
+                        <div>${score.score}/${score.maxScore}</div>
+                        <div style="font-weight: bold; color: #27ae60;">${score.percentage}%</div>
+                    </div>
+                `;
+                });
+
+                leaderboardHTML += `</div>`;
+
+                if (scores.length > 10) {
+                    leaderboardHTML += `<p style="color: #666; margin-top: 1rem;">Showing top 10 of ${scores.length} scores</p>`;
+                }
+            }
+
+            leaderboardContent.innerHTML = leaderboardHTML;
+
+        } catch (error) {
+            console.error('Error fetching leaderboard:', error);
+            leaderboardContent.innerHTML = `
+            <div style="padding: 2rem; color: #e74c3c;">
+                <p>Unable to load leaderboard. Please check your connection.</p>
+                <p><small>Make sure your JSON server is running on http://localhost:3000</small></p>
+            </div>
+        `;
+        }
+    }
+
+
+
+
+
+    // Event Listeners for Quiz Buttons
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+        // Add to your existing DOMContentLoaded event listener
+        const leaderboardBtn = document.getElementById('leaderboard-btn');
+        const healthyLivingLeaderboardBtn = document.getElementById('healthy-living-leaderboard');
+        const healthMythsLeaderboardBtn = document.getElementById('health-myths-leaderboard');
+
+        if (leaderboardBtn) {
+            leaderboardBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                showLeaderboard();
+            });
+        }
+
+        if (healthyLivingLeaderboardBtn) {
+            healthyLivingLeaderboardBtn.addEventListener('click', () => {
+                displayLeaderboard('healthy-living');
+            });
+        }
+
+        if (healthMythsLeaderboardBtn) {
+            healthMythsLeaderboardBtn.addEventListener('click', () => {
+                displayLeaderboard('health-myths');
+            });
+        }
+        // Initialize authentication
+        initializeAuth();
+
+        // Add event listeners for quiz buttons
+        const healthyLivingBtn = document.getElementById('healthy-living-btn');
+        const healthMythsBtn = document.getElementById('health-myths-btn');
+        const viewScoresBtn = document.getElementById('view-scores-btn');
+
+        if (healthyLivingBtn) {
+            healthyLivingBtn.addEventListener('click', () => showQuiz('healthy-living'));
+        }
+
+        if (healthMythsBtn) {
+            healthMythsBtn.addEventListener('click', () => showQuiz('health-myths'));
+        }
+
+        if (viewScoresBtn) {
+            viewScoresBtn.addEventListener('click', toggleScoreDisplay);
+        }
+    });
 </script>
 
 </body>

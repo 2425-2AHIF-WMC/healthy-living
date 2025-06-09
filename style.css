@@ -352,15 +352,7 @@ body {
     line-height: 1.6;
     text-align: center;
 }
-
 /* Footer */
-.footer {
-    background: #1a5653;
-    color: white;
-    padding: 50px 20px 30px;
-    margin-top: 40px;
-}
-
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -384,6 +376,14 @@ body {
 
 .footer-brand .brand-icon {
     font-size: 1.5rem;
+}
+
+.footer {
+
+    background: #1a5653;
+    color: white;
+    padding: 50px 20px 30px;
+    margin-top: 40px;
 }
 
 .footer-brand .brand-name {

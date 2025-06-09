@@ -1,169 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-    initializeAuth(); // This function is now from auth.js
 
-    // Add logout functionality
-    const logoutBtn = document.getElementById('logoutButton');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            logoutUser();
-            alert('Logged out successfully!');
-        });
-    }
-
-    // Authentication Modal Elements moved inside DOMContentLoaded
-    const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
-    const modalContent = document.getElementById('modalContentLogin');
-    const authModal = document.getElementById('authModal');
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-    const loginError = document.getElementById('loginError');
-    const signupError = document.getElementById('signupError');
-    const myAccountBtn = document.getElementById('myAccountBtn');
-    const closeModal = document.getElementById('closeModal');
-
-    // JSON Server configuration
-    const API_BASE_URL = 'http://localhost:3000';
-
-    // Toggle between sign-in and sign-up forms
-    if (signUpButton) {
-        signUpButton.addEventListener('click', () => {
-            modalContent.classList.add("right-panel-active");
-        });
-    }
-
-    if (signInButton) {
-        signInButton.addEventListener('click', () => {
-            modalContent.classList.remove("right-panel-active");
-        });
-    }
-
-    // Open modal when "My Account" button is clicked
-    if (myAccountBtn) {
-        myAccountBtn.addEventListener('click', () => {
-            authModal.style.display = "block";
-            modalContent.classList.remove("right-panel-active");
-        });
-    }
-
-    // Close modal
-    function closeModalFunction() {
-        authModal.style.display = "none";
-        if (loginError) loginError.classList.remove("show");
-        if (signupError) signupError.classList.remove("show");
-    }
-
-    if (closeModal) {
-        closeModal.addEventListener('click', closeModalFunction);
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-        if (e.target === authModal) {
-            closeModalFunction();
-        }
-    });
-
-    // API Functions
-    async function loginUser(email, password) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/users?email=${email}&password=${password}`);
-            const users = await response.json();
-            if (users.length > 0) {
-                return users[0];
-            }
-            return null;
-        } catch (error) {
-            console.error('Login error:', error);
-            throw error;
-        }
-    }
-
-    async function registerUser(userData) {
-        try {
-            // Check if email already exists
-            const existingResponse = await fetch(`${API_BASE_URL}/users?email=${userData.email}`);
-            const existingUsers = await existingResponse.json();
-            if (existingUsers.length > 0) {
-                throw new Error('Email already exists');
-            }
-
-            // Create new user
-            const response = await fetch(`${API_BASE_URL}/users`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...userData,
-                    id: Date.now() // Simple ID generation
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error('Registration failed');
-            }
-
-            return await response.json();
-        } catch (error) {
-            console.error('Registration error:', error);
-            throw error;
-        }
-    }
-
-    // Handle login
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-
-            try {
-                const user = await loginUser(email, password);
-                if (user) {
-                    // Login successful - use the functions from auth.js
-                    saveUserSession(user);
-                    setCurrentUser(user);
-                    authModal.style.display = "none";
-                    alert('Login successful!');
-                } else {
-                    // Login failed
-                    loginError.textContent = "Invalid email or password";
-                    loginError.classList.add("show");
-                }
-            } catch (error) {
-                loginError.textContent = "Login failed. Please try again.";
-                loginError.classList.add("show");
-            }
-        });
-    }
-
-    // Handle signup
-    if (signupForm) {
-        signupForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const name = document.getElementById('signupName').value;
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-
-            try {
-                const newUser = await registerUser({name, email, password});
-                // Login the new user
-                saveUserSession(newUser);
-                setCurrentUser(newUser);
-                authModal.style.display = "none";
-                alert('Account created successfully!');
-            } catch (error) {
-                signupError.textContent = error.message;
-                signupError.classList.add("show");
-            }
-        });
-    }
-});
-
-
-// Recipe data
+// Sample recipe data
 const recipes = [
     {
         id: 1,
@@ -1588,6 +1424,7 @@ function displayRecipes(category = 'all') {
                 </div>
             </div>
         `;
+
         recipeGrid.appendChild(recipeCard);
     });
 
@@ -1708,6 +1545,34 @@ function searchRecipes() {
         `;
         return;
     }
+
+    filteredRecipes.forEach(recipe => {
+        const recipeCard = document.createElement('div');
+        recipeCard.className = 'recipe-card';
+
+        // Create diet tags HTML
+        const dietTagsHTML = recipe.dietTags.map(tag => {
+            return `<span class="diet-tag ${tag}">${tag}</span>`;
+        }).join('');
+
+        recipeCard.innerHTML = `
+            <div class="recipe-image">${recipe.image}</div>
+            <div class="recipe-content">
+                <div class="recipe-header">
+                    <h3>${recipe.name}</h3>
+                    <span class="prep-time">${recipe.prepTime}</span>
+                </div>
+                <div class="diet-tags">${dietTagsHTML}</div>
+                <p class="recipe-description">${recipe.description}</p>
+                <div class="recipe-buttons">
+                    <button class="btn btn-secondary see-ingredients-btn" data-recipe-id="${recipe.id}">See Ingredients</button>
+                    <button class="btn btn-primary how-to-btn" data-recipe-id="${recipe.id}">How to do</button>
+                </div>
+            </div>
+        `;
+
+        recipeGrid.appendChild(recipeCard);
+    });
 
     // Add event listeners to the new buttons
     document.querySelectorAll('.see-ingredients-btn').forEach(btn => {
