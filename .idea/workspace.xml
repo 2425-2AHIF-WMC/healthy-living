@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07f270b3-b08a-412f-b600-c04a53c5ddeb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shopping.css" beforeDir="false" afterPath="$PROJECT_DIR$/shopping.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shopping.html" beforeDir="false" afterPath="$PROJECT_DIR$/shopping.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shopping.js" beforeDir="false" afterPath="$PROJECT_DIR$/shopping.js" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +47,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/simun/Documents/2. Klasse/WMC/Übung 2.Test/moveToMethode_2.Test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nelso/Desktop/WMCProject/healthy-living&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -67,6 +75,7 @@
       <workItem from="1745917460194" duration="1196000" />
       <workItem from="1748799761826" duration="12000000" />
       <workItem from="1748940169091" duration="764000" />
+<<<<<<< Updated upstream
       <workItem from="1749362417606" duration="12000" />
       <workItem from="1749368753539" duration="606000" />
       <workItem from="1749376963417" duration="426000" />
@@ -75,6 +84,12 @@
       <workItem from="1749450576131" duration="746000" />
       <workItem from="1749457188146" duration="10000" />
       <workItem from="1749458361142" duration="1039000" />
+=======
+      <workItem from="1749191767026" duration="1094000" />
+      <workItem from="1749194119790" duration="510000" />
+      <workItem from="1749228459159" duration="2292000" />
+      <workItem from="1749236428817" duration="9000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

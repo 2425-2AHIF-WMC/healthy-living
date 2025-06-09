@@ -114,6 +114,45 @@ body {
 
 
 
+/* Cart button styles */
+.cart-button {
+    display: flex;
+    align-items: center;
+    background-color: #0f766e;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+}
+.cart-button {
+    position: fixed;
+    right: 35px; /* Adjust as needed */
+    top: 120px; /* Adjust as needed */
+    z-index: 99; /* Keeps it on top */
+}
+.cart-button:hover {
+    background-color: #134e4a;
+}
+.cart-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: white;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-icon-inner {
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #0d9488;
+    border-radius: 1px;
+}
+
 /* Logo styles for shopping page */
 .logo h1 {
     font-size: 1.5rem;

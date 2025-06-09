@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Explorer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 80px 0 0;
+            min-height: 100vh;
+            background: linear-gradient(160deg, #e9dab5 0%, #a7d0e5 100%);
+            color: #333;
+        }
+        /* Navbar - keeping original design */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c7873;
+            text-decoration: none;
+        }
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .navbar-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .navbar-links a:hover {
+            color: #2c7873;
+        }
+
+        /* Logo styles for shopping page */
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        #recipeGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+
+
+        /* Auth buttons - keeping original design */
+        .auth-buttons button {
+            background: white;
+            color: #1a5653;
+            border: 1px solid #2c7873;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .auth-buttons button:hover {
+            background: #2c7873;
+            color: white;
+            box-shadow: 0 4px 12px rgba(44, 120, 115, 0.3);
+        }
+
+        /* User info - keeping original design */
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2c7873;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        #userNameDisplay {
+            color: #1a5653;
+            font-weight: 600;
+        }
+        #logoutButton {
+            background: #f87171;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #logoutButton:hover {
+            background: #ef4444;
+        }
+
+
+        /* Auth Modal - keeping original design */
+        #authModal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        #authModal .modal-content {
+            background: #fff;
+            border-radius: 20px;
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 900px;
+            height: 600px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            overflow: hidden;
+        }
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #1a5653;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+        .close-button:hover {
+            color: #2c7873;
+        }
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+        #authModal .modal-content.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+        .sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+        #authModal .modal-content.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: show 0.6s;
+        }
+        @keyframes show {
+            0%, 49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+            50%, 100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+        #authModal .modal-content.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+        .overlay {
+            background: linear-gradient(45deg, #2c7873, #1a5653);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        #authModal .modal-content.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+        #authModal .modal-content.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+        #authModal .modal-content.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+        .overlay h1 {
+            font-weight: bold;
+            margin: 0;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .overlay p {
+            font-size: 14px;
+            font-weight: 100;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+        form {
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+        form h1 {
+            font-weight: bold;
+            margin: 0;
+            color: #1a5653;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        form span {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        input {
+            background-color: rgba(233, 218, 181, 0.3);
+            border: 1px solid rgba(44, 120, 115, 0.3);
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+            border-radius: 8px;
+            color: #1a5653;
+            font-family: 'Montserrat', sans-serif;
+        }
+        input:focus {
+            outline: none;
+            border-color: #2c7873;
+            box-shadow: 0 0 0 3px rgba(44, 120, 115, 0.1);
+        }
+        input::placeholder {
+            color: rgba(26, 86, 83, 0.6);
+        }
+        #authModal button {
+            border-radius: 20px;
+            border: 1px solid #2c7873;
+            background-color: #2c7873;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #authModal button:hover {
+            background-color: #1a5653;
+            box-shadow: 0 4px 12px rgba(44, 120, 115, 0.4);
+        }
+        #authModal button.ghost {
+            background-color: transparent;
+            border-color: #FFFFFF;
+            color: #FFFFFF;
+        }
+        #authModal button.ghost:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        .error-message {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
+            min-height: 16px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .navbar-links a {
+                display: none;
+            }
+        }
+
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 256px;
+            background-color: #f7fee7;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(1, 104, 101);
+            margin-bottom: 4px;
+        }
+
+        .sidebar p {
+            font-size: 14px;
+            color: rgba(1, 104, 101, 0.49);
+            margin-bottom: 32px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            border: 1px solid #025351;
+            border-radius: 25px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            border-color: #016865;
+            box-shadow: 0 0 0 2px rgb(44, 120, 115);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: none;
+            border: none;
+            color: rgba(15, 124, 90, 0.85);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* Categories */
+        .categories-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #008a7f;
+            margin-bottom: 12px;
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .category-btn {
+            width: 100%;
+            text-align: left;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .category-btn:hover {
+            background-color: #ecfdf5;
+        }
+
+        .category-btn.active {
+            background-color: #016865;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .content-header {
+            margin-bottom: 32px;
+        }
+
+        .content-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #016865;
+            margin-bottom: 8px;
+        }
+
+        .content-description {
+            color: #016865;
+        }
+
+        /* Recipe Grid */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1c2d12;
+            margin-bottom: 8px;
+        }
+
+        .recipe-description {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .recipe-time {
+            background-color: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            position: relative;
+        }
+
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #016865;
+            margin-bottom: 16px;
+        }
+
+        .modal-description {
+            color: #016865;
+            margin-bottom: 20px;
+        }
+
+        .ingredients-section, .instructions-section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(1, 104, 101, 0.77);
+            margin-bottom: 12px;
+        }
+
+        .ingredients-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredients-list li {
+            padding: 4px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .instructions-list {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        .instructions-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 16px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* Add these to your existing CSS */
+        .recipe-image {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .recipe-content {
+            text-align: left;
+        }
+
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .prep-time {
+            background-color: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .diet-tags {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .diet-tag {
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .diet-tag.vegan { background-color: #dcfce7; color: #166534; }
+        .diet-tag.vegetarian { background-color: #dbeafe; color: #1e40af; }
+        .diet-tag.gluten-free { background-color: #fef3c7; color: #92400e; }
+        .diet-tag.high-protein { background-color: #fce7f3; color: #be185d; }
+
+        .recipe-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: #2c7873;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(1, 104, 101, 0.89);
+        }
+
+        .btn-secondary {
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e5e7eb;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .tab-btn {
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-family: inherit;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: rgba(1, 104, 101, 0.88);
+            color: #4d7c0f;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .modal-footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+    </style>
+    <script src="auth.js"></script>
+    <script src="index.js" type="module"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="#" class="navbar-brand">My Website</a>
+    <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="shopping.html">Shop</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="make.html">Services</a>
+        <a href="#">Contact</a>
+
+        <!-- Auth button (shown when user is not logged in) -->
+        <div class="auth-buttons" id="authButtons">
+            <button id="myAccountBtn">My Account</button>
+        </div>
+
+        <!-- User info (shown when user is logged in) -->
+        <div class="user-info" id="userInfo">
+            <div class="user-avatar" id="userAvatar"></div>
+            <span id="userNameDisplay"></span>
+            <button id="logoutButton">Logout</button>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div>
+            <h1>Recipe Explorer</h1>
+            <p>Delicious recipes for everyone</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search recipes...">
+            <button id="searchBtn" class="search-btn">🔍</button>
+        </div>
+
+        <!-- Categories -->
+        <h2 class="categories-title">Categories</h2>
+        <div class="category-list">
+            <button class="category-btn active" data-category="all">See All</button>
+            <button class="category-btn" data-category="breakfast">Breakfast</button>
+            <button class="category-btn" data-category="smoothies">Smoothies</button>
+            <button class="category-btn" data-category="salads">Salad Bowls</button>
+            <button class="category-btn" data-category="mains">Main Dishes</button>
+            <button class="category-btn" data-category="desserts">Desserts</button>
+            <button class="category-btn" data-category="snacks">Snacks</button>
+            <button class="category-btn" data-category="pasta">Pasta</button>
+            <button class="category-btn" data-category="soups">Soups</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-header">
+            <h1 class="content-title" id="categoryTitle">All Recipes</h1>
+            <p class="content-description" id="categoryDescription">Explore our collection of delicious recipes</p>
+        </div>
+
+        <!-- Recipe Grid -->
+        <div id="recipeGrid" class="recipe-grid"></div>
+    </div>
+
+    </div>
+
+
+<!-- Recipe Detail Modal -->
+<div id="recipeModal" class="modal hidden">
+    <div class="modal-content">
+
+        <div id="modalContent">
+            <!-- Modal content will be dynamically inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Login/Signup Modal -->
+<div class="modal" id="authModal">
+    <div class="modal-content" id="modalContentLogin">
+        <span class="close-button" id="closeModal">&times;</span>
+
+        <div class="form-container sign-up-container">
+            <form id="signupForm">
+                <h1>Create Account</h1>
+                <span>Use your email for registration</span>
+                <input type="text" id="signupName" placeholder="Name" required />
+                <input type="email" id="signupEmail" placeholder="Email" required />
+                <input type="password" id="signupPassword" placeholder="Password" required />
+                <div class="error-message" id="signupError"></div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h1>Log In</h1>
+                <span>Use your account</span>
+                <input type="email" id="loginEmail" placeholder="Email" required />
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <div class="error-message" id="loginError"></div>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Log In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, new Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeAuth(); // This function is now from auth.js
+
+        // Add logout functionality
+        const logoutBtn = document.getElementById('logoutButton');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                logoutUser();
+                alert('Logged out successfully!');
+            });
+        }
+
+        // Authentication Modal Elements - moved inside DOMContentLoaded
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const modalContent = document.getElementById('modalContentLogin');
+        const authModal = document.getElementById('authModal');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginError = document.getElementById('loginError');
+        const signupError = document.getElementById('signupError');
+        const myAccountBtn = document.getElementById('myAccountBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        // JSON Server configuration
+        const API_BASE_URL = 'http://localhost:3000';
+
+        // Toggle between sign-in and sign-up forms
+        if (signUpButton) {
+            signUpButton.addEventListener('click', () => {
+                modalContent.classList.add("right-panel-active");
+            });
+        }
+
+        if (signInButton) {
+            signInButton.addEventListener('click', () => {
+                modalContent.classList.remove("right-panel-active");
+            });
+        }
+
+        // Open modal when "My Account" button is clicked
+        if (myAccountBtn) {
+            myAccountBtn.addEventListener('click', () => {
+                authModal.style.display = "block";
+                modalContent.classList.remove("right-panel-active");
+            });
+        }
+
+        // Close modal
+        function closeModalFunction() {
+            authModal.style.display = "none";
+            if (loginError) loginError.classList.remove("show");
+            if (signupError) signupError.classList.remove("show");
+        }
+
+        if (closeModal) {
+            closeModal.addEventListener('click', closeModalFunction);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                closeModalFunction();
+            }
+        });
+
+        // API Functions
+        async function loginUser(email, password) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users?email=${email}&password=${password}`);
+                const users = await response.json();
+                if (users.length > 0) {
+                    return users[0];
+                }
+                return null;
+            } catch (error) {
+                console.error('Login error:', error);
+                throw error;
+            }
+        }
+
+        async function registerUser(userData) {
+            try {
+                // Check if email already exists
+                const existingResponse = await fetch(`${API_BASE_URL}/users?email=${userData.email}`);
+                const existingUsers = await existingResponse.json();
+                if (existingUsers.length > 0) {
+                    throw new Error('Email already exists');
+                }
+
+                // Create new user
+                const response = await fetch(`${API_BASE_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ...userData,
+                        id: Date.now() // Simple ID generation
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Registration failed');
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error('Registration error:', error);
+                throw error;
+            }
+        }
+
+        // Handle login
+        if (loginForm) {
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    const user = await loginUser(email, password);
+                    if (user) {
+                        // Login successful - use the functions from auth.js
+                        saveUserSession(user);
+                        setCurrentUser(user);
+                        authModal.style.display = "none";
+                        alert('Login successful!');
+                    } else {
+                        // Login failed
+                        loginError.textContent = "Invalid email or password";
+                        loginError.classList.add("show");
+                    }
+                } catch (error) {
+                    loginError.textContent = "Login failed. Please try again.";
+                    loginError.classList.add("show");
+                }
+            });
+        }
+
+        // Handle signup
+        if (signupForm) {
+            signupForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+
+                try {
+                    const newUser = await registerUser({name, email, password});
+                    // Login the new user
+                    saveUserSession(newUser);
+                    setCurrentUser(newUser);
+                    authModal.style.display = "none";
+                    alert('Account created successfully!');
+                } catch (error) {
+                    signupError.textContent = error.message;
+                    signupError.classList.add("show");
+                }
+            });
+        }
+    });
+
+    // Sample recipe data
+    const recipes = [
+        {
+            id: 1,
+            name: "Berry Blast Smoothie",
+            category: "smoothies",
+            image: "🍓",
+            description: "A refreshing blend of mixed berries, banana, and almond milk.",
+            dietTags: ["vegan", "gluten-free"],
+            prepTime: "5 mins",
+            ingredients: [
+                "1 cup mixed berries (frozen)",
+                "1 ripe banana",
+                "1 cup almond milk",
+                "1 tbsp honey or maple syrup",
+                "1 tsp vanilla extract"
+            ],
+            instructions: [
+                "Add all ingredients to a high-speed blender",
+                "Blend on high for 60-90 seconds until smooth",
+                "Pour into glasses and serve immediately",
+                "Garnish with fresh berries if desired"
+            ]
+        },
+        {
+            id: 2,
+            name: "Mediterranean Quinoa Bowl",
+            category: "salads",
+            image: "🥗",
+            description: "A protein-packed salad bowl with quinoa and fresh vegetables.",
+            dietTags: ["vegetarian", "high-protein"],
+            prepTime: "20 mins",
+            ingredients: [
+                "1 cup cooked quinoa",
+                "1 cucumber, diced",
+                "1 cup cherry tomatoes",
+                "1/2 red onion, sliced",
+                "1/2 cup olives",
+                "1/2 cup feta cheese"
+            ],
+            instructions: [
+                "Combine quinoa, vegetables, and olives in a bowl.",
+                "Make dressing with olive oil, lemon juice, and herbs.",
+                "Add dressing and top with feta cheese."
+            ]
+        },
+        {
+            id: 3,
+            name: "Avocado Toast",
+            category: "breakfast",
+            image: "🥑",
+            description: "Classic avocado toast topped with a perfectly poached egg.",
+            dietTags: ["vegetarian"],
+            prepTime: "15 mins",
+            ingredients: [
+                "2 slices whole grain bread",
+                "1 ripe avocado",
+                "2 eggs",
+                "Salt and pepper",
+                "Red pepper flakes"
+            ],
+            instructions: [
+                "Toast the bread until golden brown.",
+                "Mash avocado and spread on toast.",
+                "Top with poached eggs and seasonings."
+            ]
+        },
+        {
+            id: 4,
+            name: "Chocolate Banana Pancakes",
+            category: "breakfast",
+            image: "🥞",
+            description: "Fluffy pancakes with chocolate chips and banana slices.",
+            dietTags: ["vegetarian"],
+            prepTime: "20 mins",
+            ingredients: [
+                "1 cup flour",
+                "1 tbsp sugar",
+                "1 tsp baking powder",
+                "1 egg",
+                "1 cup milk",
+                "1 banana, sliced",
+                "1/4 cup chocolate chips"
+            ],
+            instructions: [
+                "Mix dry ingredients in a bowl.",
+                "Whisk egg and milk, then combine with dry ingredients.",
+                "Fold in chocolate chips.",
+                "Cook on a hot griddle and top with banana slices."
+            ]
+        },
+        {
+            id: 5,
+            name: "Spaghetti Carbonara",
+            category: "pasta",
+            image: "🍝",
+            description: "Classic Italian pasta with eggs, cheese, and pancetta.",
+            dietTags: ["high-protein"],
+            prepTime: "25 mins",
+            ingredients: [
+                "8 oz spaghetti",
+                "2 eggs",
+                "1/2 cup grated Parmesan",
+                "4 oz pancetta, diced",
+                "2 cloves garlic",
+                "Black pepper"
+            ],
+            instructions: [
+                "Cook pasta according to package directions.",
+                "Fry pancetta until crispy, add garlic.",
+                "Whisk eggs and cheese in a bowl.",
+                "Toss hot pasta with egg mixture and pancetta."
+            ]
+        },
+        {
+            id: 6,
+            name: "Vegetable Lasagna",
+            category: "pasta",
+            image: "🍛",
+            description: "Layers of pasta, vegetables, and cheese baked to perfection.",
+            dietTags: ["vegetarian"],
+            prepTime: "45 mins",
+            ingredients: [
+                "Lasagna noodles",
+                "2 cups marinara sauce",
+                "2 cups ricotta cheese",
+                "2 cups mozzarella",
+                "1 cup spinach",
+                "1 zucchini, sliced",
+                "1 eggplant, sliced"
+            ],
+            instructions: [
+                "Layer sauce, noodles, vegetables, and cheese.",
+                "Repeat layers ending with cheese on top.",
+                "Bake at 375°F for 30 minutes covered.",
+                "Uncover and bake 15 more minutes until bubbly."
+            ]
+        },
+        {
+            id: 7,
+            name: "Tomato Basil Soup",
+            category: "soups",
+            image: "🍅",
+            description: "Creamy tomato soup with fresh basil and a touch of cream.",
+            dietTags: ["vegetarian", "gluten-free"],
+            prepTime: "30 mins",
+            ingredients: [
+                "2 lbs tomatoes",
+                "1 onion, diced",
+                "2 cloves garlic",
+                "2 cups vegetable broth",
+                "1/4 cup fresh basil",
+                "1/2 cup heavy cream",
+                "Salt and pepper"
+            ],
+            instructions: [
+                "Sauté onion and garlic until soft.",
+                "Add tomatoes and broth, simmer for 20 minutes.",
+                "Blend until smooth, then return to pot.",
+                "Stir in cream and basil, season to taste."
+            ]
+        },
+        {
+            id: 8,
+            name: "Chicken Noodle Soup",
+            category: "soups",
+            image: "🍲",
+            description: "Classic comfort soup with chicken, vegetables, and egg noodles.",
+            dietTags: ["high-protein"],
+            prepTime: "40 mins",
+            ingredients: [
+                "1 lb chicken breast",
+                "8 cups chicken broth",
+                "2 carrots, diced",
+                "2 celery stalks, diced",
+                "1 onion, diced",
+                "2 cups egg noodles",
+                "Fresh herbs"
+            ],
+            instructions: [
+                "Cook chicken in broth until done, then shred.",
+                "Add vegetables and simmer until tender.",
+                "Add noodles and cook until al dente.",
+                "Return chicken to pot and season with herbs."
+            ]
+        },
+        {
+            id: 9,
+            name: "Chocolate Chip Cookies",
+            category: "desserts",
+            image: "🍪",
+            description: "Classic chocolate chip cookies that are crispy outside and chewy inside.",
+            dietTags: ["vegetarian"],
+            prepTime: "25 mins",
+            ingredients: [
+                "2 1/4 cups flour",
+                "1 cup butter",
+                "3/4 cup sugar",
+                "3/4 cup brown sugar",
+                "2 eggs",
+                "2 cups chocolate chips",
+                "1 tsp vanilla"
+            ],
+            instructions: [
+                "Cream butter and sugars until fluffy.",
+                "Add eggs and vanilla, then mix in dry ingredients.",
+                "Fold in chocolate chips.",
+                "Bake at 375°F for 9-11 minutes."
+            ]
+        },
+        {
+            id: 10,
+            name: "Grilled Salmon",
+            category: "mains",
+            image: "🐟",
+            description: "Perfectly grilled salmon fillet with asparagus and lemon butter.",
+            dietTags: ["high-protein", "gluten-free"],
+            prepTime: "25 mins",
+            ingredients: [
+                "2 salmon fillets",
+                "1 bunch asparagus",
+                "2 tbsp olive oil",
+                "2 tbsp butter",
+                "1 lemon",
+                "Salt and pepper"
+            ],
+            instructions: [
+                "Season salmon with salt and pepper.",
+                "Grill salmon for 4-5 minutes per side.",
+                "Grill asparagus until tender.",
+                "Make lemon butter sauce and drizzle over fish."
+            ]
+        },
+        {
+            id: 11,
+            name: "Beef Stir Fry",
+            category: "mains",
+            image: "🥩",
+            description: "Quick and flavorful beef stir fry with colorful vegetables.",
+            dietTags: ["high-protein"],
+            prepTime: "20 mins",
+            ingredients: [
+                "1 lb beef strips",
+                "1 bell pepper, sliced",
+                "1 onion, sliced",
+                "2 cups broccoli florets",
+                "3 tbsp soy sauce",
+                "1 tbsp sesame oil",
+                "2 cloves garlic"
+            ],
+            instructions: [
+                "Stir-fry beef until browned, remove from pan.",
+                "Cook vegetables until tender-crisp.",
+                "Add beef back to pan with sauce ingredients.",
+                "Stir until everything is coated and heated through."
+            ]
+        },
+        {
+            id: 12,
+            name: "Trail Mix Energy Bites",
+            category: "snacks",
+            image: "🥜",
+            description: "No-bake energy bites with nuts, dried fruit, and chocolate.",
+            dietTags: ["vegetarian", "high-protein"],
+            prepTime: "15 mins",
+            ingredients: [
+                "1 cup oats",
+                "1/2 cup peanut butter",
+                "1/3 cup honey",
+                "1/4 cup mini chocolate chips",
+                "1/4 cup dried cranberries",
+                "1/4 cup chopped nuts",
+                "1 tsp vanilla"
+            ],
+            instructions: [
+                "Mix all ingredients in a large bowl.",
+                "Chill mixture for 30 minutes.",
+                "Roll into 1-inch balls.",
+                "Store in refrigerator for up to a week."
+            ]
+        }
+    ];
+
+    // DOM elements
+    const recipeGrid = document.getElementById('recipeGrid');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const categoryTitle = document.getElementById('categoryTitle');
+    const categoryDescription = document.getElementById('categoryDescription');
+    const recipeModal = document.getElementById('recipeModal');
+    const modalContent = document.getElementById('modalContent');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+
+    // Display recipes
+    function displayRecipes(category = 'all') {
+        recipeGrid.innerHTML = '';
+
+        let filteredRecipes = recipes;
+        if (category !== 'all') {
+            filteredRecipes = recipes.filter(recipe => recipe.category === category);
+        }
+
+        // Update category title and description
+        if (category === 'all') {
+            categoryTitle.textContent = 'All Recipes';
+            categoryDescription.textContent = 'Explore our collection of delicious recipes';
+        } else {
+            const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+            categoryTitle.textContent = categoryName;
+            categoryDescription.textContent = `Discover our ${categoryName.toLowerCase()} collection`;
+        }
+
+        filteredRecipes.forEach(recipe => {
+            const recipeCard = document.createElement('div');
+            recipeCard.className = 'recipe-card';
+
+            // Create diet tags HTML
+            const dietTagsHTML = recipe.dietTags.map(tag => {
+                return `<span class="diet-tag ${tag}">${tag}</span>`;
+            }).join('');
+
+            recipeCard.innerHTML = `
+            <div class="recipe-image">${recipe.image}</div>
+            <div class="recipe-content">
+                <div class="recipe-header">
+                    <h3>${recipe.name}</h3>
+                    <span class="prep-time">${recipe.prepTime}</span>
+                </div>
+                <div class="diet-tags">${dietTagsHTML}</div>
+                <p class="recipe-description">${recipe.description}</p>
+                <div class="recipe-buttons">
+                    <button class="btn btn-secondary see-ingredients-btn" data-recipe-id="${recipe.id}">See Ingredients</button>
+                    <button class="btn btn-primary how-to-btn" data-recipe-id="${recipe.id}">How to do</button>
+                </div>
+            </div>
+        `;
+
+            recipeGrid.appendChild(recipeCard);
+        });
+
+        // Add event listeners to the new buttons
+        document.querySelectorAll('.see-ingredients-btn').forEach(btn => {
+            btn.addEventListener('click', () => showRecipeDetails(btn.dataset.recipeId, 'ingredients'));
+        });
+
+        document.querySelectorAll('.how-to-btn').forEach(btn => {
+            btn.addEventListener('click', () => showRecipeDetails(btn.dataset.recipeId, 'instructions'));
+        });
+    }
+
+    // Show recipe details in modal
+    function showRecipeDetails(recipeId, tab = 'ingredients') {
+        const recipe = recipes.find(r => r.id == recipeId);
+        if (!recipe) return;
+
+        modalContent.innerHTML = `
+        <div class="modal-header">
+            <h2>${recipe.name}</h2>
+            <button id="closeModal" class="close-btn">&times;</button>
+        </div>
+
+        <div class="modal-tabs">
+            <button id="ingredientsTab" class="tab-btn ${tab === 'ingredients' ? 'active' : ''}">Ingredients</button>
+            <button id="instructionsTab" class="tab-btn ${tab === 'instructions' ? 'active' : ''}">Instructions</button>
+        </div>
+
+        <div id="ingredientsContent" class="tab-content ${tab === 'ingredients' ? 'active' : ''}">
+            <ul class="ingredients-list">
+                ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div id="instructionsContent" class="tab-content ${tab === 'instructions' ? 'active' : ''}">
+            <ol class="instructions-list">
+                ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+            </ol>
+        </div>
+
+        <div class="modal-footer">
+            <div class="modal-tags">
+                ${recipe.dietTags.map(tag => `<span class="diet-tag ${tag}">${tag}</span>`).join('')}
+            </div>
+        </div>
+    `;
+
+        recipeModal.style.display = 'flex';
+
+        // Add event listeners for modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            recipeModal.style.display = 'none';
+        });
+
+        document.getElementById('ingredientsTab').addEventListener('click', () => {
+            document.getElementById('ingredientsContent').classList.add('active');
+            document.getElementById('instructionsContent').classList.remove('active');
+            document.getElementById('ingredientsTab').classList.add('active');
+            document.getElementById('instructionsTab').classList.remove('active');
+        });
+
+        document.getElementById('instructionsTab').addEventListener('click', () => {
+            document.getElementById('instructionsContent').classList.add('active');
+            document.getElementById('ingredientsContent').classList.remove('active');
+            document.getElementById('instructionsTab').classList.add('active');
+            document.getElementById('ingredientsTab').classList.remove('active');
+        });
+    }
+
+    // Close modal when clicking outside
+    recipeModal.addEventListener('click', (e) => {
+        if (e.target === recipeModal) {
+            recipeModal.style.display = 'none';
+        }
+    });
+
+    // Category button click handlers
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+            // Display recipes for the selected category
+            displayRecipes(btn.dataset.category);
+        });
+    });
+
+    // Search functionality
+    function searchRecipes() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (!searchTerm) {
+            displayRecipes('all');
+            return;
+        }
+
+        recipeGrid.innerHTML = '';
+        categoryTitle.textContent = 'Search Results';
+        categoryDescription.textContent = `Recipes matching "${searchTerm}"`;
+
+        // Remove active class from all category buttons
+        categoryBtns.forEach(b => b.classList.remove('active'));
+
+        const filteredRecipes = recipes.filter(recipe => {
+            return recipe.name.toLowerCase().includes(searchTerm) ||
+                recipe.description.toLowerCase().includes(searchTerm) ||
+                recipe.dietTags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                recipe.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm));
+        });
+
+        if (filteredRecipes.length === 0) {
+            recipeGrid.innerHTML = `
+            <div class="no-results">
+                <h3>No recipes found</h3>
+                <p>Try different keywords or browse by category</p>
+            </div>
+        `;
+            return;
+        }
+
+        filteredRecipes.forEach(recipe => {
+            const recipeCard = document.createElement('div');
+            recipeCard.className = 'recipe-card';
+
+            // Create diet tags HTML
+            const dietTagsHTML = recipe.dietTags.map(tag => {
+                return `<span class="diet-tag ${tag}">${tag}</span>`;
+            }).join('');
+
+            recipeCard.innerHTML = `
+            <div class="recipe-image">${recipe.image}</div>
+            <div class="recipe-content">
+                <div class="recipe-header">
+                    <h3>${recipe.name}</h3>
+                    <span class="prep-time">${recipe.prepTime}</span>
+                </div>
+                <div class="diet-tags">${dietTagsHTML}</div>
+                <p class="recipe-description">${recipe.description}</p>
+                <div class="recipe-buttons">
+                    <button class="btn btn-secondary see-ingredients-btn" data-recipe-id="${recipe.id}">See Ingredients</button>
+                    <button class="btn btn-primary how-to-btn" data-recipe-id="${recipe.id}">How to do</button>
+                </div>
+            </div>
+        `;
+
+            recipeGrid.appendChild(recipeCard);
+        });
+
+        // Add event listeners to the new buttons
+        document.querySelectorAll('.see-ingredients-btn').forEach(btn => {
+            btn.addEventListener('click', () => showRecipeDetails(btn.dataset.recipeId, 'ingredients'));
+        });
+
+        document.querySelectorAll('.how-to-btn').forEach(btn => {
+            btn.addEventListener('click', () => showRecipeDetails(btn.dataset.recipeId, 'instructions'));
+        });
+    }
+
+    // Search event listeners
+    searchBtn.addEventListener('click', searchRecipes);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchRecipes();
+        }
+    });
+
+    // Initialize with all recipes
+    displayRecipes('all');
+</script>
+</body>
+</html>

@@ -1,10 +1,11 @@
+
 // JSON Server configuration
 const API_BASE_URL = 'http://localhost:3000'; // Change this to your JSON server URL
 
 // DOM Elements
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
-const modalContent = document.getElementById('modalContent');
+const modalContent = document.getElementById('modalContentLogin');
 const authModal = document.getElementById('authModal');
 const welcomeMessage = document.getElementById('welcomeMessage');
 const logoutButton = document.getElementById('logoutButton');
@@ -23,7 +24,26 @@ const notification = document.getElementById('notification');
 // Current user state
 let currentUser = null;
 
+// Session management functions
+function saveUserSession(user) {
+    sessionStorage.setItem('currentUser', JSON.stringify(user));
+    sessionStorage.setItem('isLoggedIn', 'true');
+}
 
+function loadUserSession() {
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+    const userData = sessionStorage.getItem('currentUser');
+
+    if (isLoggedIn && userData) {
+        return JSON.parse(userData);
+    }
+    return null;
+}
+
+function clearUserSession() {
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('isLoggedIn');
+}
 // Toggle between sign-in and sign-up forms
 signUpButton.addEventListener('click', () => {
     modalContent.classList.add("right-panel-active");
@@ -155,6 +175,7 @@ signupForm.addEventListener('submit', async function(e) {
 // Set current user and update UI
 function setCurrentUser(user) {
     currentUser = user;
+    saveUserSession(user); // Add this line
     welcomeMessage.textContent = `Welcome to our site, ${user.name}!`;
 
     // Update UI to show logged in state
@@ -169,12 +190,12 @@ function setCurrentUser(user) {
     loginError.classList.remove("show");
     signupError.classList.remove("show");
 }
-
 // Handle logout
 logoutButton.addEventListener('click', function(e) {
     e.preventDefault();
 
     currentUser = null;
+    clearUserSession(); // Add this line
     welcomeMessage.textContent = "";
 
     // Update UI to show logged out state
@@ -186,6 +207,11 @@ logoutButton.addEventListener('click', function(e) {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if user was previously logged in (you might want to implement session persistence)
+    // Check for existing session
+    const savedUser = loadUserSession();
+    if (savedUser) {
+        setCurrentUser(savedUser);
+    }
+
     console.log('App initialized. Ready to connect to JSON server at:', API_BASE_URL);
 });

@@ -1,28 +1,58 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Test User",
-      "email": "test@example.com",
-      "password": "password123"
-    },
-    {
       "id": "1748610642945",
       "name": "Sarah Joshika Nelson",
       "email": "nelsonsarahjoshika@gmail.com",
-      "password": "Sarahsamrat1"
-    },
-    {
-      "id": "1748800989119",
-      "name": "Petra",
-      "email": "simunovicpetra06@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": 1748874354239,
-      "name": "Annika",
-      "email": "a.neuhauser@gmail.com",
-      "password": "1234567"
+      "password": "Sarahsamrat1",
+      "quizResults": {
+        "healthy-living": {
+          "bestScore": {
+            "score": 21,
+            "percentage": 100,
+            "date": "2025-06-08T11:00:14.913Z",
+            "answers": {
+              "1": 3,
+              "2": 3,
+              "3": 3,
+              "4": 3,
+              "5": 3,
+              "6": 3,
+              "7": 3
+            }
+          },
+          "newestScore": {
+            "score": 8,
+            "percentage": 38,
+            "maxScore": 21,
+            "date": "2025-06-08T22:14:03.388Z",
+            "answers": {
+              "1": 2,
+              "2": 2,
+              "3": 1,
+              "4": 0,
+              "5": 1,
+              "6": 1,
+              "7": 1
+            }
+          }
+        },
+        "health-myths": {
+          "bestScore": {
+            "score": 8,
+            "percentage": 80,
+            "date": "2025-06-03T10:45:00.000Z",
+            "answers": null
+          },
+          "newestScore": {
+            "score": 2,
+            "percentage": 20,
+            "maxScore": 10,
+            "date": "2025-06-09T09:26:56.074Z",
+            "answers": null
+          }
+        }
+      }
     }
   ]
 }
