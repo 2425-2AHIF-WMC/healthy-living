@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
@@ -54,6 +55,26 @@ body {
     color: #2c7873;
 }
 
+.back-button {
+    background: white;
+    color: #1a5653;
+    border: 1px solid #2c7873;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background: #2c7873;
+    color: white;
+    box-shadow: 0 4px 12px rgba(44, 120, 115, 0.3);
+}
+
+/* Authentication */
 .auth-buttons {
     display: flex;
     gap: 10px;
@@ -126,6 +147,30 @@ body {
     background: #f0f0f0;
 }
 
+#myAccountBtn, #logoutButton {
+    background: white;
+    color: #1a5653;
+    border: 1px solid #2c7873;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+}
+
+#myAccountBtn:hover, #logoutButton:hover {
+    background: #2c7873;
+    color: white;
+    box-shadow: 0 4px 12px rgba(44, 120, 115, 0.3);
+}
+
+#userNameDisplay {
+    font-weight: 600;
+    color: #1a5653;
+}
+
+/* Background Animation */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -194,6 +239,34 @@ body {
     padding: 0 2rem;
 }
 
+/* Category Filter */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #1a5653;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #2c7873;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 120, 115, 0.3);
+}
+
 /* Workout Grid */
 .workout-grid {
     display: grid;
@@ -247,6 +320,7 @@ body {
     margin-bottom: 1.5rem;
     transition: all 0.3s;
     background: linear-gradient(135deg, #2c7873, #1a5653);
+    color: white;
 }
 
 .workout-card:hover .workout-icon {
@@ -265,6 +339,110 @@ body {
     line-height: 1.7;
     color: #4a5568;
     margin-bottom: 2rem;
+}
+
+/* Exercise Categories */
+.exercise-category {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a5653;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+/* Exercise Card */
+.exercise-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.exercise-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.exercise-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.exercise-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2c7873, #1a5653);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.exercise-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a5653;
+}
+
+.difficulty {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-left: auto;
+}
+
+.difficulty.beginner { background: #4ade80; color: white; }
+.difficulty.intermediate { background: #fbbf24; color: white; }
+.difficulty.advanced { background: #ef4444; color: white; }
+
+/* Muscle Groups */
+.muscle-groups {
+    margin-bottom: 1.5rem;
+}
+
+.muscle-groups h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a5653;
+    margin-bottom: 0.8rem;
+}
+
+.muscle-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.muscle-tag {
+    background: rgba(44, 120, 115, 0.1);
+    color: #1a5653;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid rgba(44, 120, 115, 0.2);
 }
 
 /* Features List */
@@ -316,6 +494,84 @@ body {
 .exercise-tag:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
+}
+
+/* 3D Animation Container */
+.exercise-animation {
+    width: 100%;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(44, 120, 115, 0.2);
+}
+
+.animation-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.animation-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #2c7873;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.exercise-animation:hover {
+    box-shadow: 0 8px 25px rgba(44, 120, 115, 0.2);
+    border-color: rgba(44, 120, 115, 0.4);
+}
+
+.animation-hint {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(44, 120, 115, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    z-index: 5;
+}
+
+.model-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#c {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Instructions */
+.instructions {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.instructions h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a5653;
+    margin-bottom: 0.5rem;
+}
+
+.instructions p {
+    font-size: 0.85rem;
+    color: #4a5568;
+    line-height: 1.5;
 }
 
 /* Call to Action */
@@ -683,45 +939,6 @@ form button:hover {
     color: #a0aec0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .workout-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .workout-card {
-        padding: 2rem;
-    }
-
-    .header {
-        padding: 2rem 1rem 1rem;
-    }
-
-    .container {
-        padding: 0 1rem;
-    }
-
-    .modal-content {
-        width: 90%;
-        min-height: 400px;
-        margin: 20px auto;
-    }
-
-    .form-container {
-        width: 100% !important;
-    }
-
-    .overlay-container {
-        display: none;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
 /* Loading Animation */
 .loading {
     opacity: 0;
@@ -765,4 +982,60 @@ form button:hover {
 .click-effect.clicked::after {
     width: 300px;
     height: 300px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .workout-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .exercises-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workout-card, .exercise-card {
+        padding: 2rem;
+    }
+
+    .header {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        min-height: 400px;
+        margin: 20px auto;
+    }
+
+    .form-container {
+        width: 100% !important;
+    }
+
+    .overlay-container {
+        display: none;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .category-filter {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .exercise-animation {
+        height: 150px;
+    }
 }
