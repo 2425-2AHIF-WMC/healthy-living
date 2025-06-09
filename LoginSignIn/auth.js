@@ -57,3 +57,55 @@ function initializeAuth() {
         logoutUser();
     }
 }
+
+
+// Add these to auth.js
+let currentUser = null;
+window.currentUser = null; // Make globally accessible
+
+function setCurrentUser(user) {
+    currentUser = user;
+    window.currentUser = user; // Update global reference
+    saveUserSession(user);
+
+    const authButtons = document.getElementById('authButtons');
+    const userInfo = document.getElementById('userInfo');
+    const userNameDisplay = document.getElementById('userNameDisplay');
+    const userAvatar = document.getElementById('userAvatar');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    if (authButtons && userInfo) {
+        authButtons.style.display = "none";
+        userInfo.style.display = "flex";
+        userNameDisplay.textContent = user.name;
+        userAvatar.textContent = user.name.charAt(0).toUpperCase();
+    }
+
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome back, ${user.name}!`;
+    }
+}
+
+function showNotification(message, type) {
+    // Simple notification - you can enhance this later
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#2c7873' : '#ef4444'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        z-index: 4000;
+        font-weight: bold;
+    `;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3000);
+}

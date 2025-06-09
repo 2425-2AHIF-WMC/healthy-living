@@ -172,24 +172,7 @@ signupForm.addEventListener('submit', async function(e) {
     }
 });
 
-// Set current user and update UI
-function setCurrentUser(user) {
-    currentUser = user;
-    saveUserSession(user); // Add this line
-    welcomeMessage.textContent = `Welcome to our site, ${user.name}!`;
 
-    // Update UI to show logged in state
-    authButtons.style.display = "none";
-    userInfo.style.display = "flex";
-    userNameDisplay.textContent = user.name;
-    userAvatar.textContent = user.name.charAt(0).toUpperCase();
-
-    // Clear form fields
-    loginForm.reset();
-    signupForm.reset();
-    loginError.classList.remove("show");
-    signupError.classList.remove("show");
-}
 // Handle logout
 logoutButton.addEventListener('click', function(e) {
     e.preventDefault();

@@ -7,17 +7,151 @@
     <link rel="stylesheet" href = "style.css">
     <script src="index.js" type="module"></script>
     <script src="script.js"></script>
-    <script src="auth.js"></script>
+    <script src="../LoginSignIn/auth.js"></script>
+
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(229, 255, 251);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease-out forwards;
+            animation-delay: 3s;
+        }
+
+        .loader {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50% 0;
+            background-color: #059669;
+            transform-origin: center;
+        }
+
+        .leaf:nth-child(1) {
+            transform: rotate(45deg);
+            animation: pulse 1.2s infinite alternate;
+            top: 0;
+            left: 25px;
+        }
+
+        .leaf:nth-child(2) {
+            transform: rotate(135deg);
+            animation: pulse 1.2s infinite alternate 0.4s;
+            top: 25px;
+            right: 0;
+        }
+
+        .leaf:nth-child(3) {
+            transform: rotate(225deg);
+            animation: pulse 1.2s infinite alternate 0.8s;
+            bottom: 0;
+            right: 25px;
+        }
+
+        .leaf:nth-child(4) {
+            transform: rotate(315deg);
+            animation: pulse 1.2s infinite alternate 1.2s;
+            bottom: 25px;
+            left: 0;
+        }
+
+        .loading-text {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #059669;
+            letter-spacing: 2px;
+            animation: breathe 2s infinite alternate;
+            text-align: center;
+        }
+
+        .loading-bar {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(44, 120, 115, 0.49);
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30%;
+            background-color: #059669;
+            border-radius: 4px;
+            animation: loading 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform-origin: center;
+                transform: rotate(inherit) scale(0.8);
+                opacity: 0.7;
+            }
+            100% {
+                transform-origin: center;
+                transform: rotate(inherit) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes loading {
+            0% { left: -30%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+    </style>
 </head>
 <body>
+<div class="loading-screen">
+    <div class="loader">
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+        <div class="leaf"></div>
+    </div>
+    <div class="loading-text">Healthy Living...</div>
+    <div class="loading-bar"></div>
+</div>
+
 <nav class="navbar">
     <a href="#" class="navbar-brand">Healthy Living</a>
     <div class="navbar-links">
         <a href="index.html">Home</a>
-        <a href="shopping.html">Shop</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="wourkouts/HTMLs/indexWorkouts.html">Workouts</a>
-        <a href="recipe.html">Recipe</a>
+        <a href="../Shop/shopping.html">Shop</a>
+        <a href="../quiz/quiz.html">Quiz</a>
+        <a href="../wourkouts/HTMLs/indexWorkouts.html">Workouts</a>
+        <a href="../recipe/recipe.html">Recipe</a>
 
         <!-- Auth button (shown when user is not logged in) -->
         <div class="auth-buttons" id="authButtons">
@@ -63,19 +197,19 @@
             <div class="feature-icon">🥗</div>
             <h3>Nutrition Plans</h3>
             <p>We help you eat better with meal plans made just for you. Our nutrition experts will work with you to create healthy eating habits that fit your life.
-            Whether you want to lose weight, feel more energetic, or just eat healthier foods, we'll guide you every step of the way.</p>
+                Whether you want to lose weight, feel more energetic, or just eat healthier foods, we'll guide you every step of the way.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🏃</div>
             <h3>Fitness Routines</h3>
             <p>Stay active with workout plans designed for you. We will help you exercise safely and have fun doing it.
-            We'll start with what you can do now and help you get stronger over time. No matter if you're just starting out or already active, we'll help you reach your fitness goals.</p>
+                We'll start with what you can do now and help you get stronger over time. No matter if you're just starting out or already active, we'll help you reach your fitness goals.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🧘</div>
             <h3>Mindfulness</h3>
             <p>Learn simple ways to feel calmer and less stressed. We teach you easy breathing exercises and relaxation techniques that you can use anywhere.
-            These skills help you handle daily stress better and feel more peaceful. Join our friendly groups or work with us one-on-one to start feeling better today.</p>
+                These skills help you handle daily stress better and feel more peaceful. Join our friendly groups or work with us one-on-one to start feeling better today.</p>
         </div>
     </div>
 </section>
@@ -121,10 +255,10 @@
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="shopping.html">Shop</a></li>
-                <li><a href="quiz.html">Quiz</a></li>
-                <li><a href="wourkouts/HTMLs/indexWorkouts.html">Workouts</a></li>
-                <li><a href="recipe.html">Recipe</a></li>
+                <li><a href="../Shop/shopping.html">Shop</a></li>
+                <li><a href="../quiz/quiz.html">Quiz</a></li>
+                <li><a href="../wourkouts/HTMLs/indexWorkouts.html">Workouts</a></li>
+                <li><a href="../recipe/recipe.html">Recipe</a></li>
             </ul>
         </div>
 

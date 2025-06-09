@@ -1,0 +1,160 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "D",
+      "cart": [
+        {
+          "name": "Resistance Band Set",
+          "price": 9.99,
+          "quantity": 1
+        },
+        {
+          "name": "Premium Yoga Mat",
+          "price": 49.99,
+          "quantity": 1
+        },
+        {
+          "name": "Adjustable Dumbbells",
+          "price": 249,
+          "quantity": 1
+        },
+        {
+          "name": "Essential Oil Diffuser",
+          "price": 54.98,
+          "quantity": 1
+        }
+      ],
+      "quizResults": {
+        "health-myths": {
+          "newestScore": {
+            "score": 4,
+            "percentage": 40,
+            "maxScore": 10,
+            "date": "2025-06-09T21:48:28.858Z",
+            "answers": null
+          },
+          "bestScore": {
+            "score": 4,
+            "percentage": 40,
+            "maxScore": 10,
+            "date": "2025-06-09T21:48:28.858Z",
+            "answers": null
+          }
+        }
+      }
+    },
+    {
+      "id": "1749506794316",
+      "name": "Sarah",
+      "email": "nelsonsarahjoshika@gmail.com",
+      "password": "1234",
+      "cart": [
+        {
+          "name": "Adjustable Dumbbells",
+          "price": 249,
+          "quantity": 2
+        },
+        {
+          "name": "Resistance Band Set",
+          "price": 9.99,
+          "quantity": 2
+        }
+      ],
+      "quizResults": {
+        "healthy-living": {
+          "newestScore": {
+            "score": 13,
+            "percentage": 62,
+            "maxScore": 21,
+            "date": "2025-06-09T22:45:56.952Z",
+            "answers": {
+              "1": 3,
+              "2": 2,
+              "3": 1,
+              "4": 2,
+              "5": 1,
+              "6": 2,
+              "7": 2
+            }
+          },
+          "bestScore": {
+            "score": 14,
+            "percentage": 67,
+            "maxScore": 21,
+            "date": "2025-06-09T22:20:32.025Z",
+            "answers": {
+              "1": 2,
+              "2": 2,
+              "3": 2,
+              "4": 2,
+              "5": 2,
+              "6": 2,
+              "7": 2
+            }
+          }
+        },
+        "health-myths": {
+          "newestScore": {
+            "score": 3,
+            "percentage": 30,
+            "maxScore": 10,
+            "date": "2025-06-09T22:46:27.047Z",
+            "answers": null
+          },
+          "bestScore": {
+            "score": 3,
+            "percentage": 30,
+            "maxScore": 10,
+            "date": "2025-06-09T22:46:27.047Z",
+            "answers": null
+          }
+        }
+      }
+    },
+    {
+      "id": "1749507158747",
+      "name": "Samrat",
+      "email": "samratjoahnnnelson@gmail.com",
+      "password": "Sarahsamrart1"
+    },
+    {
+      "id": "1749507158747",
+      "name": "Samrat",
+      "email": "samratjoahnnnelson@gmail.com",
+      "password": "Sarahsamrart1",
+      "quizResults": {
+        "health-myths": {
+          "newestScore": {
+            "score": 6,
+            "percentage": 60,
+            "maxScore": 10,
+            "date": "2025-06-09T22:12:56.642Z",
+            "answers": null
+          },
+          "bestScore": {
+            "score": 6,
+            "percentage": 60,
+            "maxScore": 10,
+            "date": "2025-06-09T22:12:56.642Z",
+            "answers": null
+          }
+        }
+      }
+    },
+    {
+      "id": "1749507567614",
+      "name": "Samrat",
+      "email": "musterman@gmail.com",
+      "password": "1234"
+    },
+    {
+      "id": 1749509001124,
+      "name": "Joshila",
+      "email": "sarah@gmail.com",
+      "password": "1234"
+    }
+  ]
+}

@@ -1,15 +1,13 @@
+// Initialize cart and authentication when page loads
+let cart;
+
 document.addEventListener('DOMContentLoaded', () => {
     initializeAuth(); // This function is now from auth.js
 
     // Add logout functionality
-    const logoutBtn = document.getElementById('logoutButton');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            logoutUser();
-            alert('Logged out successfully!');
-        });
-    }
+
+
+
 
     // Authentication Modal Elements moved inside DOMContentLoaded
     const signUpButton = document.getElementById('signUp');
@@ -32,10 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
             modalContent.classList.add("right-panel-active");
         });
     }
-
-    if (signInButton) {
+    if (signInButton && modalContent) {
         signInButton.addEventListener('click', () => {
             modalContent.classList.remove("right-panel-active");
+        });
+    }
+    if (signUpButton && modalContent) {
+        signUpButton.addEventListener('click', () => {
+            modalContent.classList.add("right-panel-active");
         });
     }
 
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Email already exists');
             }
 
-            // Create new user
+            // Create new user with empty cart
             const response = await fetch(`${API_BASE_URL}/users`, {
                 method: 'POST',
                 headers: {
@@ -97,7 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     ...userData,
-                    id: Date.now() // Simple ID generation
+                    id: Date.now(),
+                    cart: [] // Add this line
                 })
             });
 
@@ -111,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             throw error;
         }
     }
-
     // Handle login
     if (loginForm) {
         loginForm.addEventListener('submit', async function(e) {
@@ -127,6 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     setCurrentUser(user);
                     authModal.style.display = "none";
                     alert('Login successful!');
+
+
+                    // In your login form event listener, after successful login:
+                    if (user) {
+                        // Login successful
+                        saveUserSession(user);
+                        setCurrentUser(user);
+
+                        // Load user's cart
+                        if (cart && user.cart) {
+                            cart.items = user.cart;
+                            cart.updateCartDisplay();
+                        }
+
+                        authModal.style.display = "none";
+                        alert('Login successful!');
+                    }
                 } else {
                     // Login failed
                     loginError.textContent = "Invalid email or password";
@@ -138,6 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+
 
     // Handle signup
     if (signupForm) {
@@ -160,6 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+
+    setTimeout(async () => {
+        if (!cart) {
+            cart = new ShoppingCart();
+            // Load user's cart if logged in
+            if (window.currentUser) {
+                const userCart = await loadUserCart();
+                cart.items = userCart;
+                cart.updateCartDisplay();
+            }
+        }
+    }, 100);
 
 });
 
@@ -431,8 +465,7 @@ class ShoppingCart {
             if (e.target === cartModal) this.toggleCart();
         };
     }
-
-    addToCart(productName, price) {
+    async addToCart(productName, price) {
         const existingItem = this.items.find(item => item.name === productName);
 
         if (existingItem) {
@@ -447,31 +480,42 @@ class ShoppingCart {
 
         this.updateCartDisplay();
         this.showAddedToCartMessage(productName);
+
+        // Save to database
+        await saveCartToDatabase(this.items);
     }
 
-    removeFromCart(productName) {
+    async removeFromCart(productName) {
         this.items = this.items.filter(item => item.name !== productName);
         this.updateCartDisplay();
+
+        // Save to database
+        await saveCartToDatabase(this.items);
     }
 
-    updateQuantity(productName, newQuantity) {
+    async updateQuantity(productName, newQuantity) {
         const item = this.items.find(item => item.name === productName);
         if (item) {
             if (newQuantity <= 0) {
-                this.removeFromCart(productName);
+                await this.removeFromCart(productName);
             } else {
                 item.quantity = newQuantity;
                 this.updateCartDisplay();
+
+                // Save to database
+                await saveCartToDatabase(this.items);
             }
         }
     }
-
-    clearCart() {
+    async clearCart() {
         if (this.items.length === 0) return;
 
         if (confirm('Are you sure you want to clear your cart?')) {
             this.items = [];
             this.updateCartDisplay();
+
+            // Save to database
+            await saveCartToDatabase(this.items);
         }
     }
 
@@ -583,7 +627,7 @@ class ShoppingCart {
         }, 3000);
     }
 
-    checkout() {
+    async checkout() {
         if (this.items.length === 0) {
             alert('Your cart is empty!');
             return;
@@ -593,54 +637,85 @@ class ShoppingCart {
         const itemCount = this.items.reduce((sum, item) => sum + item.quantity, 0);
 
         const confirmMessage = `
-            Checkout Summary:
-            Items: ${itemCount}
-            Total: €${total.toFixed(2)}
-            
-            Proceed to checkout?
-        `;
+        Checkout Summary:
+        Items: ${itemCount}
+        Total: €${total.toFixed(2)}
+        
+        Proceed to checkout?
+    `;
 
         if (confirm(confirmMessage)) {
             alert('Thank you for your order! 🎉\n\nThis is a demo, so no actual payment will be processed.');
             this.items = [];
             this.updateCartDisplay();
             this.toggleCart();
+
+            // Save empty cart to database
+            await saveCartToDatabase(this.items);
         }
     }
 }
 
-// Authentication Functions (placeholder - you'll need to implement these based on your auth.js)
-function initializeAuth() {
-    // Initialize authentication system
-    console.log('Authentication initialized');
-}
 
-function saveUserSession(user) {
-    // Save user session data
-    const userData = JSON.stringify(user);
-    // Using in-memory storage for demo purposes
-    window.currentUserSession = userData;
-}
 
-function setCurrentUser(user) {
-    // Set current user
-    window.currentUser = user;
-    console.log('Current user set:', user);
-}
 
-function logoutUser() {
-    // Clear user session
-    window.currentUserSession = null;
-    window.currentUser = null;
-}
-
-// Initialize cart and authentication when page loads
-let cart;
 
 
 // Global function for add to cart buttons
 function addToCart(productName, price) {
     if (cart) {
         cart.addToCart(productName, price);
+    }
+}
+
+
+// Move this OUTSIDE of DOMContentLoaded, after the ShoppingCart class
+async function saveCartToDatabase(cartItems) {
+    const currentUser = window.currentUser;
+    if (!currentUser) {
+        console.log('No user logged in, cart not saved');
+        return;
+    }
+    try {
+        const response = await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                cart: cartItems
+            })
+        });
+
+        if (!response.ok) {
+            console.log('Failed to save cart - user may not exist in database');
+            return;
+        }
+
+        console.log('Cart saved successfully');
+    } catch (error) {
+        console.error('Error saving cart:', error);
+    }
+}
+
+async function loadUserCart() {
+    const currentUser = window.currentUser;
+    if (!currentUser) {
+        return [];
+    }
+    try {
+        const response = await fetch(`http://localhost:3000/users/${currentUser.id}`);
+
+        // Check if response is ok before parsing JSON
+        if (!response.ok) {
+            console.log('User not found in database, returning empty cart');
+            return [];
+        }
+
+        const user = await response.json();
+        return user.cart || [];
+    } catch (error) {
+        console.error('Error loading cart:', error);
+        return [];
     }
 }
