@@ -112,8 +112,6 @@ body {
 }
 
 
-
-
 /* Cart button styles */
 .cart-button {
     display: flex;
@@ -176,7 +174,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     margin: 20px;
     border-radius: 20px;
-    padding: 30px;
+    padding: 20px;
     transition: transform 0.3s ease;
     backdrop-filter: blur(5px);
 }
@@ -287,18 +285,6 @@ body {
 .product-card:hover .product-image {
     background: #d1ecf1;
     border-color: #2c7873;
-}
-
-.store-badge {
-    background: #61b6b3;
-    width: 100%;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    display: inline-block;
 }
 
 .product-title {
